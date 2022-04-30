@@ -33,7 +33,8 @@ struct AmountComponent: View {
                 .minimumScaleFactor(0.5)
                 .padding(.horizontal)
         }
-        
+        .frame(width: 300,
+               height: 125)
     }
 }
 

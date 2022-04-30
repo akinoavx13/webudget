@@ -24,8 +24,6 @@ struct TransactionScene: View {
                 .amountModel
                 .map {
                     AmountComponent(model: $0)
-                        .frame(width: 300,
-                               height: 100)
                 }
             
             Spacer()

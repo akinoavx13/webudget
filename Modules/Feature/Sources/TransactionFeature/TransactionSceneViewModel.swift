@@ -21,13 +21,13 @@ final class TransactionSceneViewModel: ObservableObject {
     @Published private(set) var keyboardModel: KeyboardComponent.Model?
     @Published private(set) var sourceModel: SourceComponent.Model?
     
-    private var transactionAmount: String {
+    private var transactionAmount: Int = 0 {
         didSet {
             let amount = formatterService.formatCurrency(value: transactionAmount)
 
-            amountModel = AmountComponent.Model(amount: transactionAmount)
-            keyboardModel = KeyboardComponent.Model(isDeleteButtonDisabled: amount <= 0,
-                                                    isValidateButtonDisabled: amount <= 0)
+            amountModel = AmountComponent.Model(amount: amount)
+            keyboardModel = KeyboardComponent.Model(isDeleteButtonDisabled: transactionAmount <= 0,
+                                                    isValidateButtonDisabled: transactionAmount <= 0)
         }
     }
     
@@ -37,10 +37,8 @@ final class TransactionSceneViewModel: ObservableObject {
     
     init(formatterService: FormatterServiceProtocol) {
         self.formatterService = formatterService
-        
-        transactionAmount = formatterService.formatCurrency(value: 0)
-        
-        amountModel = AmountComponent.Model(amount: transactionAmount)
+                
+        amountModel = AmountComponent.Model(amount: formatterService.formatCurrency(value: transactionAmount))
         keyboardModel = KeyboardComponent.Model(isDeleteButtonDisabled: true,
                                                 isValidateButtonDisabled: true)
         sourceModel = SourceComponent.Model(isExpenseSelected: true)
@@ -49,15 +47,13 @@ final class TransactionSceneViewModel: ObservableObject {
     // MARK: - Methods
     
     func numberDidTapAction(value: Int) {
-        guard transactionAmount.count <= 18 else { return }
-        
-        let amount = formatterService.formatCurrency(value: transactionAmount) * 10 + value
-        transactionAmount = formatterService.formatCurrency(value: amount)
+        guard transactionAmount <= 1_000_000_000_000 else { return }
+
+        transactionAmount = transactionAmount * 10 + value
     }
     
     func deleteDidTapAction() {
-        let amount = formatterService.formatCurrency(value: transactionAmount) / 10
-        transactionAmount = formatterService.formatCurrency(value: amount)
+        transactionAmount /= 10
     }
     
     func validateDidTapAction() {

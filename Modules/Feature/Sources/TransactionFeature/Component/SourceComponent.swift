@@ -21,12 +21,15 @@ struct SourceComponent: View {
     let expenseDidTapAction: @MainActor () -> Void
     let incomeDidTapAction: @MainActor () -> Void
     
+    private let impactGenerator = UIImpactFeedbackGenerator(style: .light)
+
     // MARK: - Body
     
     var body: some View {
         HStack {
             Button {
                 expenseDidTapAction()
+                impactGenerator.impactOccurred()
             } label: {
                 Text("§Expense")
                     .font(.headline)
@@ -41,6 +44,7 @@ struct SourceComponent: View {
             
             Button {
                 incomeDidTapAction()
+                impactGenerator.impactOccurred()
             } label: {
                 Text("§Income")
                     .font(.headline)
