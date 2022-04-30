@@ -17,16 +17,19 @@ final class TransactionSceneViewModel: ObservableObject {
     
     weak var coordinator: TransactionSceneCoordinator?
     
-    @Published private(set) var transactionAmount: String {
+    @Published private(set) var amountModel: AmountComponent.Model?
+    @Published private(set) var keyboardModel: KeyboardComponent.Model?
+    @Published private(set) var sourceModel: SourceComponent.Model?
+    
+    private var transactionAmount: String {
         didSet {
             let amount = formatterService.formatCurrency(value: transactionAmount)
-            
-            isDeleteButtonDisabled = amount <= 0
-            isValidateButtonDisabled = amount <= 0
+
+            amountModel = AmountComponent.Model(amount: transactionAmount)
+            keyboardModel = KeyboardComponent.Model(isDeleteButtonDisabled: amount <= 0,
+                                                    isValidateButtonDisabled: amount <= 0)
         }
     }
-    @Published private(set) var isDeleteButtonDisabled: Bool = true
-    @Published private(set) var isValidateButtonDisabled: Bool = true
     
     private let formatterService: FormatterServiceProtocol
     
@@ -36,6 +39,11 @@ final class TransactionSceneViewModel: ObservableObject {
         self.formatterService = formatterService
         
         transactionAmount = formatterService.formatCurrency(value: 0)
+        
+        amountModel = AmountComponent.Model(amount: transactionAmount)
+        keyboardModel = KeyboardComponent.Model(isDeleteButtonDisabled: true,
+                                                isValidateButtonDisabled: true)
+        sourceModel = SourceComponent.Model(isExpenseSelected: true)
     }
     
     // MARK: - Methods
@@ -54,6 +62,14 @@ final class TransactionSceneViewModel: ObservableObject {
     
     func validateDidTapAction() {
         dd("validate")
+    }
+    
+    func expenseDidTapAction() {
+        sourceModel = SourceComponent.Model(isExpenseSelected: true)
+    }
+    
+    func incomeDidTapAction() {
+        sourceModel = SourceComponent.Model(isExpenseSelected: false)
     }
 }
 

@@ -39,7 +39,7 @@ struct AmountComponent: View {
 
 struct AmountComponent_Previews: PreviewProvider {
     static var previews: some View {
-        AmountComponent(model: AmountComponent.Model(amount: "5 $"))
+        AmountComponent(model: AmountComponent.Model(amount: "$ 5"))
             
             .previewLayout(.fixed(width: 340, height: 140))
             .padding(20)

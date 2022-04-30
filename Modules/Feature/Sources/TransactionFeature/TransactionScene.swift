@@ -20,18 +20,32 @@ struct TransactionScene: View {
         VStack {
             Spacer()
             
-            AmountComponent(model: AmountComponent.Model(amount: viewModel.transactionAmount))
-                .frame(width: 300,
-                       height: 100)
+            viewModel
+                .amountModel
+                .map {
+                    AmountComponent(model: $0)
+                        .frame(width: 300,
+                               height: 100)
+                }
             
             Spacer()
             
-            KeyboardComponent(isDeleteButtonDisabled: viewModel.isDeleteButtonDisabled,
-                              isValidateButtonDisabled: viewModel.isValidateButtonDisabled,
-                              numberDidTapAction: viewModel.numberDidTapAction(value:),
-                              deleteDidTapAction: viewModel.deleteDidTapAction,
-                              validateDidTapAction: viewModel.validateDidTapAction)
+            viewModel
+                .sourceModel
+                .map { SourceComponent(model: $0,
+                                       expenseDidTapAction: viewModel.expenseDidTapAction,
+                                       incomeDidTapAction: viewModel.incomeDidTapAction) }
+            
+            viewModel
+                .keyboardModel
+                .map {
+                    KeyboardComponent(model: $0,
+                                      numberDidTapAction: viewModel.numberDidTapAction(value:),
+                                      deleteDidTapAction: viewModel.deleteDidTapAction,
+                                      validateDidTapAction: viewModel.validateDidTapAction)
+                }
         }
+        .padding()
     }
 }
 

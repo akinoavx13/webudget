@@ -10,29 +10,20 @@ import SharedUI
 
 struct KeyboardComponent: View {
     
+    struct Model {
+        let isDeleteButtonDisabled: Bool
+        let isValidateButtonDisabled: Bool
+    }
+    
     // MARK: - Properties
     
-    private let isDeleteButtonDisabled: Bool
-    private let isValidateButtonDisabled: Bool
-    private let numberDidTapAction: @MainActor (Int) -> Void
-    private let deleteDidTapAction: @MainActor () -> Void
-    private let validateDidTapAction: @MainActor () -> Void
+    let model: Model
+    
+    let numberDidTapAction: @MainActor (Int) -> Void
+    let deleteDidTapAction: @MainActor () -> Void
+    let validateDidTapAction: @MainActor () -> Void
     
     private let impactGenerator = UIImpactFeedbackGenerator(style: .light)
-    
-    // MARK: - Lifecycle
-    
-    init(isDeleteButtonDisabled: Bool,
-         isValidateButtonDisabled: Bool,
-         numberDidTapAction: @MainActor @escaping (Int) -> Void,
-         deleteDidTapAction: @MainActor @escaping () -> Void,
-         validateDidTapAction: @MainActor @escaping () -> Void) {
-        self.isDeleteButtonDisabled = isDeleteButtonDisabled
-        self.isValidateButtonDisabled = isValidateButtonDisabled
-        self.numberDidTapAction = numberDidTapAction
-        self.deleteDidTapAction = deleteDidTapAction
-        self.validateDidTapAction = validateDidTapAction
-    }
     
     // MARK: - Body
     
@@ -56,14 +47,13 @@ struct KeyboardComponent: View {
             HStack {
                 makeIconButtonView(icon: "delete.left",
                                    tint: .red,
-                                   isDisabled: isDeleteButtonDisabled) { deleteDidTapAction() }
+                                   isDisabled: model.isDeleteButtonDisabled) { deleteDidTapAction() }
                 makeTitleButtonView(title: "0") { numberDidTapAction(0) }
                 makeIconButtonView(icon: "checkmark.circle.fill",
                                    tint: .accentColor,
-                                   isDisabled: isValidateButtonDisabled) { validateDidTapAction() }
+                                   isDisabled: model.isValidateButtonDisabled) { validateDidTapAction() }
             }
         }
-        .padding()
     }
     
     // MARK: - Make views
@@ -108,23 +98,17 @@ struct KeyboardComponent: View {
 struct KeyboardComponent_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            KeyboardComponent(isDeleteButtonDisabled: false,
-                              isValidateButtonDisabled: false) { _ in
-                
-            } deleteDidTapAction: {
-                
-            } validateDidTapAction: {
-                
-            }
+            KeyboardComponent(model: KeyboardComponent.Model(isDeleteButtonDisabled: false,
+                                                             isValidateButtonDisabled: false),
+                              numberDidTapAction: { _ in },
+                              deleteDidTapAction: { },
+                              validateDidTapAction: { })
             
-            KeyboardComponent(isDeleteButtonDisabled: false,
-                              isValidateButtonDisabled: false) { _ in
-                
-            } deleteDidTapAction: {
-                
-            } validateDidTapAction: {
-                
-            }
+            KeyboardComponent(model: KeyboardComponent.Model(isDeleteButtonDisabled: false,
+                                                             isValidateButtonDisabled: false),
+                              numberDidTapAction: { _ in },
+                              deleteDidTapAction: { },
+                              validateDidTapAction: { })
             .preferredColorScheme(.dark)
         }
         .previewLayout(.fixed(width: 375,
