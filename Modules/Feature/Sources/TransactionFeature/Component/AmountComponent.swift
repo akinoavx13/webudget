@@ -26,6 +26,7 @@ struct AmountComponent: View {
                 .shadow(radius: 5)
             
             Text(model.amount)
+                .foregroundColor(.white)
                 .font(.title)
                 .fontWeight(.bold)
                 .lineLimit(1)

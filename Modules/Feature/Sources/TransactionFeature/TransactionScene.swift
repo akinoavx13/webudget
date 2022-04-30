@@ -21,7 +21,8 @@ struct TransactionScene: View {
             Spacer()
             
             AmountComponent(model: AmountComponent.Model(amount: viewModel.transactionAmount))
-                .frame(width: 300, height: 100)
+                .frame(width: 300,
+                       height: 100)
             
             Spacer()
             

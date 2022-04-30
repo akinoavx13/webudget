@@ -79,7 +79,7 @@ struct KeyboardComponent: View {
                 .fontWeight(.bold)
                 .frame(maxWidth: .infinity)
         }
-        .buttonStyle(AnimatedButtonStyle(backgroundColors: [.secondary.opacity(0.05)],
+        .buttonStyle(AnimatedButtonStyle(backgroundColors: [.secondary.opacity(0.1)],
                                          cornerRadius: 8))
     }
     
@@ -98,7 +98,7 @@ struct KeyboardComponent: View {
                 .frame(maxWidth: .infinity)
         }
         .disabled(isDisabled)
-        .buttonStyle(AnimatedButtonStyle(backgroundColors: [.secondary.opacity(0.05)],
+        .buttonStyle(AnimatedButtonStyle(backgroundColors: [.secondary.opacity(0.1)],
                                          cornerRadius: 8))
     }
 }
@@ -107,15 +107,28 @@ struct KeyboardComponent: View {
 
 struct KeyboardComponent_Previews: PreviewProvider {
     static var previews: some View {
-        KeyboardComponent(isDeleteButtonDisabled: false,
-                          isValidateButtonDisabled: false) { _ in
+        Group {
+            KeyboardComponent(isDeleteButtonDisabled: false,
+                              isValidateButtonDisabled: false) { _ in
+                
+            } deleteDidTapAction: {
+                
+            } validateDidTapAction: {
+                
+            }
             
-        } deleteDidTapAction: {
-            
-        } validateDidTapAction: {
-            
+            KeyboardComponent(isDeleteButtonDisabled: false,
+                              isValidateButtonDisabled: false) { _ in
+                
+            } deleteDidTapAction: {
+                
+            } validateDidTapAction: {
+                
+            }
+            .preferredColorScheme(.dark)
         }
-        
+        .previewLayout(.fixed(width: 375,
+                              height: 375))
     }
 }
 
