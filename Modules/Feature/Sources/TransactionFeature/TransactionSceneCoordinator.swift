@@ -9,8 +9,14 @@
 import UIKit.UINavigationController
 import SwiftUI
 import Core
+import FormatterService
 
-protocol TransactionSceneCoordinatorDependencies: AnyObject { }
+protocol TransactionSceneCoordinatorDependencies: AnyObject {
+    
+    // MARK: - Properties
+    
+    var formatterService: FormatterServiceProtocol { get }
+}
 
 public final class TransactionSceneCoordinator: CoordinatorProtocol {
     
@@ -34,10 +40,12 @@ public final class TransactionSceneCoordinator: CoordinatorProtocol {
     
     @MainActor
     public func start(params: Any...) {
-        let viewModel = TransactionSceneViewModel()
+        let viewModel = TransactionSceneViewModel(formatterService: dependencies.formatterService)
         viewModel.coordinator = self
         
         let viewController = UIHostingController(rootView: TransactionScene(viewModel: viewModel))
+        viewController.title = "§Transaction"
+        navigationController.navigationBar.prefersLargeTitles = true
         
         navigationController.setViewControllers([viewController],
                                                 animated: false)

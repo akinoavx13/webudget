@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		52B278E2281D79230059CF1A /* FormatterService in Frameworks */ = {isa = PBXBuildFile; productRef = 52B278E1281D79230059CF1A /* FormatterService */; };
 		52B5BE3E281D66A800BA6643 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B5BE3D281D66A800BA6643 /* AppDelegate.swift */; };
 		52B5BE47281D66A900BA6643 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52B5BE46281D66A900BA6643 /* Assets.xcassets */; };
 		52B5BE4A281D66A900BA6643 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52B5BE48281D66A900BA6643 /* LaunchScreen.storyboard */; };
@@ -18,6 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		52B278E0281D77620059CF1A /* Service */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Service; path = Modules/Service; sourceTree = "<group>"; };
+		52B278E3281D828B0059CF1A /* SharedUI */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = SharedUI; path = Modules/SharedUI; sourceTree = "<group>"; };
 		52B5BE3A281D66A800BA6643 /* WeBudget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeBudget.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52B5BE3D281D66A800BA6643 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		52B5BE46281D66A900BA6643 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -35,6 +38,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52B278E2281D79230059CF1A /* FormatterService in Frameworks */,
 				52B5BE6B281D6C6100BA6643 /* TransactionFeature in Frameworks */,
 				52B5BE58281D695100BA6643 /* Core in Frameworks */,
 			);
@@ -46,6 +50,8 @@
 		52B5BE31281D66A800BA6643 = {
 			isa = PBXGroup;
 			children = (
+				52B278E3281D828B0059CF1A /* SharedUI */,
+				52B278E0281D77620059CF1A /* Service */,
 				52B5BE61281D6BF000BA6643 /* Feature */,
 				52B5BE55281D692A00BA6643 /* Core */,
 				52B5BE3C281D66A800BA6643 /* WeBudget */,
@@ -135,6 +141,7 @@
 			packageProductDependencies = (
 				52B5BE57281D695100BA6643 /* Core */,
 				52B5BE6A281D6C6100BA6643 /* TransactionFeature */,
+				52B278E1281D79230059CF1A /* FormatterService */,
 			);
 			productName = WeBudget;
 			productReference = 52B5BE3A281D66A800BA6643 /* WeBudget.app */;
@@ -426,6 +433,10 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		52B278E1281D79230059CF1A /* FormatterService */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = FormatterService;
+		};
 		52B5BE57281D695100BA6643 /* Core */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Core;

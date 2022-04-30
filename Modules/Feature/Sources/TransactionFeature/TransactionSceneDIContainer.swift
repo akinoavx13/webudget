@@ -6,15 +6,22 @@
 //  Copyright © 2022 ___ORGANIZATIONNAME___. All rights reserved.
 //
 
+import FormatterService
 import UIKit.UINavigationController
 
 public final class TransactionSceneDIContainer {
     
     public struct Dependencies {
 
+        // MARK: - Properties
+        
+        let formatterService: FormatterServiceProtocol
+
         // MARK: - Lifecycle
 
-        public init() { }
+        public init(formatterService: FormatterServiceProtocol) {
+            self.formatterService = formatterService
+        }
     }
     
     // MARK: - Properties
@@ -37,4 +44,10 @@ public final class TransactionSceneDIContainer {
 
 // MARK: - TransactionSceneCoordinatorDependencies -
 
-extension TransactionSceneDIContainer: TransactionSceneCoordinatorDependencies { }
+extension TransactionSceneDIContainer: TransactionSceneCoordinatorDependencies {
+    
+    // MARK: - Properties
+    
+    var formatterService: FormatterServiceProtocol { dependencies.formatterService }
+
+}

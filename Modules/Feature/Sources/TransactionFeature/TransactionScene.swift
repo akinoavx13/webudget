@@ -17,7 +17,20 @@ struct TransactionScene: View {
     // MARK: - Body
     
     var body: some View {
-        Text("Hello, World")
+        VStack {
+            Spacer()
+            
+            AmountComponent(model: AmountComponent.Model(amount: viewModel.transactionAmount))
+                .frame(width: 300, height: 100)
+            
+            Spacer()
+            
+            KeyboardComponent(isDeleteButtonDisabled: viewModel.isDeleteButtonDisabled,
+                              isValidateButtonDisabled: viewModel.isValidateButtonDisabled,
+                              numberDidTapAction: viewModel.numberDidTapAction(value:),
+                              deleteDidTapAction: viewModel.deleteDidTapAction,
+                              validateDidTapAction: viewModel.validateDidTapAction)
+        }
     }
 }
 

@@ -12,11 +12,15 @@ let package = Package(
         .library(name: "TransactionFeature", targets: ["TransactionFeature"])
     ],
     dependencies: [
-        .package(name: "Core", path: "./Core")
+        .package(name: "Core", path: "./Core"),
+        .package(name: "Service", path: "./Service"),
+        .package(name: "SharedUI", path: "./SharedUI")
     ],
     targets: [
         .target(name: "TransactionFeature", dependencies: [
-            "Core"
+            "Core",
+            "SharedUI",
+            .product(name: "FormatterService", package: "Service")
         ])
     ]
 )
