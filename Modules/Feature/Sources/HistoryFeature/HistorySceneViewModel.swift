@@ -48,7 +48,8 @@ final class HistorySceneViewModel: ObservableObject {
                             models: transactions.map { TransactionComponent.Model(id: $0.id,
                                                                                   value: formatterService.formatCurrency(value: $0.value),
                                                                                   date: formatterService.formatDate(value: $0.date,
-                                                                                                                    format: "MMM d"),
+                                                                                                                    dateStyle: .medium,
+                                                                                                                    timeStyle: .none),
                                                                                   isExpense: $0.isExpense)})]
     }
     

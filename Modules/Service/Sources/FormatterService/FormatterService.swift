@@ -11,7 +11,8 @@ public protocol FormatterServiceProtocol {
     func formatCurrency(value: Int) -> String
     func formatCurrency(value: String) -> Int
     func formatDate(value: Date,
-                    format: String) -> String
+                    dateStyle: DateFormatter.Style,
+                    timeStyle: DateFormatter.Style) -> String
 }
 
 public final class FormatterService: FormatterServiceProtocol {
@@ -45,8 +46,10 @@ public final class FormatterService: FormatterServiceProtocol {
     }
     
     public func formatDate(value: Date,
-                           format: String) -> String {
-        dateFormatter.dateFormat = format
+                           dateStyle: DateFormatter.Style,
+                           timeStyle: DateFormatter.Style) -> String {
+        dateFormatter.dateStyle = dateStyle
+        dateFormatter.timeStyle = timeStyle
         
         return dateFormatter.string(from: value)
     }

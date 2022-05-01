@@ -38,6 +38,7 @@
 		52B5BE61281D6BF000BA6643 /* Feature */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Feature; path = Modules/Feature; sourceTree = "<group>"; };
 		52B953B1281ECD8D005A8B38 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		52B953B4281ECDCE005A8B38 /* Translator+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Translator+Extensions.swift"; sourceTree = "<group>"; };
+		52B953B6281EDD48005A8B38 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		52F178E2281EAAF20048A831 /* Model */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Model; path = Modules/Model; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -194,6 +195,7 @@
 			knownRegions = (
 				en,
 				Base,
+				fr,
 			);
 			mainGroup = 52B5BE31281D66A800BA6643;
 			productRefGroup = 52B5BE3B281D66A800BA6643 /* Products */;
@@ -267,6 +269,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				52B953B1281ECD8D005A8B38 /* en */,
+				52B953B6281EDD48005A8B38 /* fr */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -278,6 +281,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -338,6 +342,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
