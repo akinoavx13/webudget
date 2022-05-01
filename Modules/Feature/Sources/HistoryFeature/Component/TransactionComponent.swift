@@ -23,7 +23,11 @@ struct TransactionComponent: View {
     // MARK: - Body
     
     var body: some View {
-        HStack {
+        HStack(spacing: 4) {
+            Text(model.isExpense ? "-" : "+")
+                .font(.headline)
+                .foregroundColor(model.isExpense ? .red : .green)
+            
             Text(model.value)
                 .font(.headline)
             
