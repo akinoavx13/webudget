@@ -50,7 +50,7 @@ struct KeyboardComponent: View {
                                    isDisabled: model.isDeleteButtonDisabled) { deleteDidTapAction() }
                 makeTitleButtonView(title: "0") { numberDidTapAction(0) }
                 makeIconButtonView(icon: "checkmark.circle.fill",
-                                   tint: .accentColor,
+                                   tint: .green,
                                    isDisabled: model.isValidateButtonDisabled) { validateDidTapAction() }
             }
         }

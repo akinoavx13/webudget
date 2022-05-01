@@ -51,7 +51,12 @@ struct TransactionScene: View {
 
 struct TransactionScene_Previews: PreviewProvider {
     static var previews: some View {
-        TransactionScene(viewModel: TransactionSceneViewModel.preview)
+        Group {
+            TransactionScene(viewModel: TransactionSceneViewModel.preview)
+            
+            TransactionScene(viewModel: TransactionSceneViewModel.preview)
+                .preferredColorScheme(.dark)
+        }
     }
 }
 
