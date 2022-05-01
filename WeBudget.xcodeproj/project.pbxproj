@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		52AD9CBB281EAF9100E2620E /* BudgetService in Frameworks */ = {isa = PBXBuildFile; productRef = 52AD9CBA281EAF9100E2620E /* BudgetService */; };
 		52B278E2281D79230059CF1A /* FormatterService in Frameworks */ = {isa = PBXBuildFile; productRef = 52B278E1281D79230059CF1A /* FormatterService */; };
 		52B5BE3E281D66A800BA6643 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B5BE3D281D66A800BA6643 /* AppDelegate.swift */; };
 		52B5BE47281D66A900BA6643 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52B5BE46281D66A900BA6643 /* Assets.xcassets */; };
@@ -41,6 +42,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				52B278E2281D79230059CF1A /* FormatterService in Frameworks */,
+				52AD9CBB281EAF9100E2620E /* BudgetService in Frameworks */,
 				52B5BE6B281D6C6100BA6643 /* TransactionFeature in Frameworks */,
 				52F178E4281EAB100048A831 /* Model in Frameworks */,
 				52B5BE58281D695100BA6643 /* Core in Frameworks */,
@@ -147,6 +149,7 @@
 				52B5BE6A281D6C6100BA6643 /* TransactionFeature */,
 				52B278E1281D79230059CF1A /* FormatterService */,
 				52F178E3281EAB100048A831 /* Model */,
+				52AD9CBA281EAF9100E2620E /* BudgetService */,
 			);
 			productName = WeBudget;
 			productReference = 52B5BE3A281D66A800BA6643 /* WeBudget.app */;
@@ -438,6 +441,10 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		52AD9CBA281EAF9100E2620E /* BudgetService */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = BudgetService;
+		};
 		52B278E1281D79230059CF1A /* FormatterService */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = FormatterService;

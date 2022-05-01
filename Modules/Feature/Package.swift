@@ -14,13 +14,16 @@ let package = Package(
     dependencies: [
         .package(name: "Core", path: "./Core"),
         .package(name: "Service", path: "./Service"),
-        .package(name: "SharedUI", path: "./SharedUI")
+        .package(name: "SharedUI", path: "./SharedUI"),
+        .package(name: "Model", path: "./Model")
     ],
     targets: [
         .target(name: "TransactionFeature", dependencies: [
             "Core",
             "SharedUI",
-            .product(name: "FormatterService", package: "Service")
+            "Model",
+            .product(name: "FormatterService", package: "Service"),
+            .product(name: "BudgetService", package: "Service")
         ])
     ]
 )

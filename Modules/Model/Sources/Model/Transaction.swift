@@ -11,6 +11,14 @@ public struct Transaction {
     
     // MARK: - Properties
     
-    public let date: Date
     public let value: Int
+    public let date: Date
+    
+    // MARK: - Lifecycle
+    
+    public init(value: Int,
+                date: Date = Date()) {
+        self.value = value
+        self.date = date
+    }
 }

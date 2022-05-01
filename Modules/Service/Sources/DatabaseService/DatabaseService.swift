@@ -10,6 +10,7 @@ import Model
 
 public protocol DatabaseServiceProtocol {
     func save(transaction: Transaction)
+    func fetchTransactions() -> [Transaction]
 }
 
 public final class DatabaseService: DatabaseServiceProtocol {
@@ -22,7 +23,11 @@ public final class DatabaseService: DatabaseServiceProtocol {
     // MARK: - Lifecycle
     
     public init() {
-        persistentContainer = NSPersistentContainer(name: "Model")
+        guard let modelUrl = Bundle.module.url(forResource: "Model", withExtension: "momd"),
+              let model = NSManagedObjectModel(contentsOf: modelUrl)
+        else { fatalError("Could not init DatabaseService") }
+        
+        persistentContainer = NSPersistentContainer(name: "Model", managedObjectModel: model)
         persistentContainer.loadPersistentStores { _, error in
             if let error = error {
                 fatalError(error.localizedDescription)
@@ -38,6 +43,18 @@ public final class DatabaseService: DatabaseServiceProtocol {
         newTransaction.date = transaction.date
         
         saveIfNeeded()
+    }
+    
+    public func fetchTransactions() -> [Transaction] {
+        let fetchRequest: NSFetchRequest<CDTransaction> = NSFetchRequest(entityName: "\(CDTransaction.self)")
+        
+        do {
+            let transaction = try context.fetch(fetchRequest)
+            
+            return transaction.map { Transaction(transaction: $0) }
+        } catch {
+            fatalError(error.localizedDescription)
+        }
     }
     
     // MARK: - Private methods

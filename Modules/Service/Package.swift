@@ -10,15 +10,20 @@ let package = Package(
     ],
     products: [
         .library(name: "FormatterService", targets: ["FormatterService"]),
-        .library(name: "DatabaseService", targets: ["DatabaseService"])
+        .library(name: "DatabaseService", targets: ["DatabaseService"]),
+        .library(name: "BudgetService", targets: ["BudgetService"])
     ],
     dependencies: [
-        .package(name: "Model", path: "./Model"),
+        .package(name: "Model", path: "./Model")
     ],
     targets: [
         .target(name: "FormatterService", dependencies: []),
         .target(name: "DatabaseService", dependencies: [
             "Model"
+        ]),
+        .target(name: "BudgetService", dependencies: [
+            "Model",
+            "DatabaseService"
         ])
     ]
 )

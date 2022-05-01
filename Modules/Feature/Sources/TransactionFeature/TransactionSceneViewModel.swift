@@ -9,6 +9,8 @@
 import Combine
 import FormatterService
 import Core
+import BudgetService
+import Model
 
 @MainActor
 final class TransactionSceneViewModel: ObservableObject {
@@ -32,11 +34,14 @@ final class TransactionSceneViewModel: ObservableObject {
     }
     
     private let formatterService: FormatterServiceProtocol
+    private let budgetService: BudgetServiceProtocol
     
     // MARK: - Lifecycle
     
-    init(formatterService: FormatterServiceProtocol) {
+    init(formatterService: FormatterServiceProtocol,
+         budgetService: BudgetServiceProtocol) {
         self.formatterService = formatterService
+        self.budgetService = budgetService
                 
         amountModel = AmountComponent.Model(amount: formatterService.formatCurrency(value: transactionAmount))
         keyboardModel = KeyboardComponent.Model(isDeleteButtonDisabled: true,
@@ -57,7 +62,8 @@ final class TransactionSceneViewModel: ObservableObject {
     }
     
     func validateDidTapAction() {
-        dd("validate")
+        budgetService.save(transaction: Transaction(value: transactionAmount))
+        transactionAmount = 0
     }
     
     func expenseDidTapAction() {
@@ -72,7 +78,8 @@ final class TransactionSceneViewModel: ObservableObject {
 #if DEBUG
 
 extension TransactionSceneViewModel {
-    static let preview = TransactionSceneViewModel(formatterService: FormatterService())
+    static let preview = TransactionSceneViewModel(formatterService: FormatterService(),
+                                                   budgetService: BudgetService())
 }
 
 #endif

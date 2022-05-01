@@ -10,12 +10,14 @@ import UIKit.UINavigationController
 import SwiftUI
 import Core
 import FormatterService
+import BudgetService
 
 protocol TransactionSceneCoordinatorDependencies: AnyObject {
     
     // MARK: - Properties
     
     var formatterService: FormatterServiceProtocol { get }
+    var budgetService: BudgetServiceProtocol { get }
 }
 
 public final class TransactionSceneCoordinator: CoordinatorProtocol {
@@ -40,7 +42,8 @@ public final class TransactionSceneCoordinator: CoordinatorProtocol {
     
     @MainActor
     public func start(params: Any...) {
-        let viewModel = TransactionSceneViewModel(formatterService: dependencies.formatterService)
+        let viewModel = TransactionSceneViewModel(formatterService: dependencies.formatterService,
+                                                  budgetService: dependencies.budgetService)
         viewModel.coordinator = self
         
         let viewController = UIHostingController(rootView: TransactionScene(viewModel: viewModel))
