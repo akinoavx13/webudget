@@ -9,7 +9,8 @@ let package = Package(
         .iOS(.v15)
     ],
     products: [
-        .library(name: "TransactionFeature", targets: ["TransactionFeature"])
+        .library(name: "TransactionFeature", targets: ["TransactionFeature"]),
+        .library(name: "HistoryFeature", targets: ["HistoryFeature"])
     ],
     dependencies: [
         .package(name: "Core", path: "./Core"),
@@ -24,6 +25,9 @@ let package = Package(
             "Model",
             .product(name: "FormatterService", package: "Service"),
             .product(name: "BudgetService", package: "Service")
+        ]),
+        .target(name: "HistoryFeature", dependencies: [
+            "Core"
         ])
     ]
 )

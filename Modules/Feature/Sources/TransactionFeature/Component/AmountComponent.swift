@@ -20,28 +20,20 @@ struct AmountComponent: View {
     // MARK: - Body
     
     var body: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 8)
-                .fill(Color.accentColor)
-                .shadow(radius: 5)
-            
-            Text(model.amount)
-                .foregroundColor(.white)
-                .font(.title)
-                .fontWeight(.bold)
-                .lineLimit(1)
-                .minimumScaleFactor(0.5)
-                .padding(.horizontal)
-        }
-        .frame(width: 300,
-               height: 125)
+        Text(model.amount)
+            .foregroundColor(.primary)
+            .font(.system(size: 70))
+            .fontWeight(.bold)
+            .lineLimit(1)
+            .minimumScaleFactor(0.3)
+            .padding(.horizontal)
     }
 }
 
 struct AmountComponent_Previews: PreviewProvider {
     static var previews: some View {
         AmountComponent(model: AmountComponent.Model(amount: "$ 5"))
-            
+        
             .previewLayout(.fixed(width: 340, height: 140))
             .padding(20)
     }

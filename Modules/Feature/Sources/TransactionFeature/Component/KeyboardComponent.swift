@@ -65,8 +65,8 @@ struct KeyboardComponent: View {
             impactGenerator.impactOccurred()
         } label: {
             Text(title)
-                .font(.headline)
-                .fontWeight(.bold)
+                .font(.title3)
+                .fontWeight(.semibold)
                 .frame(maxWidth: .infinity)
         }
         .buttonStyle(AnimatedButtonStyle(backgroundColors: [.secondary.opacity(0.1)],
@@ -82,7 +82,7 @@ struct KeyboardComponent: View {
             impactGenerator.impactOccurred()
         } label: {
             Image(systemName: isDisabled ? icon.replacingOccurrences(of: ".fill", with: "") : icon)
-                .font(.headline)
+                .font(.title3)
                 .foregroundColor(isDisabled ? .gray : tint)
                 .opacity(isDisabled ? 0.5 : 1)
                 .frame(maxWidth: .infinity)

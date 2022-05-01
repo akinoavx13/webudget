@@ -21,7 +21,8 @@ final class TabBarCoordinator: CoordinatorProtocol {
     private let appDIContainer: AppDIContainer
 
     private enum Tab {
-        case transaction
+        case transaction,
+             history
     }
     
     // MARK: - Lifecycle
@@ -36,6 +37,7 @@ final class TabBarCoordinator: CoordinatorProtocol {
     
     func start(params: Any...) {
         add(tab: .transaction)
+        add(tab: .history)
         
         window.updateRootViewController(with: tabBarController)
     }
@@ -62,6 +64,15 @@ final class TabBarCoordinator: CoordinatorProtocol {
             
             let tabBarItem = UITabBarItem(title: "§Transaction",
                                           image: UIImage(systemName: "creditcard"),
+                                          selectedImage: nil)
+            navigationController.tabBarItem = tabBarItem
+        case .history:
+            coordinator = appDIContainer
+                .historySceneDIContainer
+                .makeCoordinator(navigationController: navigationController)
+            
+            let tabBarItem = UITabBarItem(title: "§History",
+                                          image: UIImage(systemName: "calendar"),
                                           selectedImage: nil)
             navigationController.tabBarItem = tabBarItem
         }
