@@ -9,10 +9,16 @@ let package = Package(
         .iOS(.v15)
     ],
     products: [
-        .library(name: "FormatterService", targets: ["FormatterService"])
+        .library(name: "FormatterService", targets: ["FormatterService"]),
+        .library(name: "DatabaseService", targets: ["DatabaseService"])
     ],
-    dependencies: [],
+    dependencies: [
+        .package(name: "Model", path: "./Model"),
+    ],
     targets: [
-        .target(name: "FormatterService", dependencies: [])
+        .target(name: "FormatterService", dependencies: []),
+        .target(name: "DatabaseService", dependencies: [
+            "Model"
+        ])
     ]
 )

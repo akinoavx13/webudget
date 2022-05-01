@@ -16,6 +16,7 @@
 		52B5BE5C281D69CB00BA6643 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B5BE5A281D69CB00BA6643 /* AppCoordinator.swift */; };
 		52B5BE5F281D69F000BA6643 /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B5BE5E281D69F000BA6643 /* TabBarCoordinator.swift */; };
 		52B5BE6B281D6C6100BA6643 /* TransactionFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 52B5BE6A281D6C6100BA6643 /* TransactionFeature */; };
+		52F178E4281EAB100048A831 /* Model in Frameworks */ = {isa = PBXBuildFile; productRef = 52F178E3281EAB100048A831 /* Model */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		52B5BE5A281D69CB00BA6643 /* AppCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		52B5BE5E281D69F000BA6643 /* TabBarCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
 		52B5BE61281D6BF000BA6643 /* Feature */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Feature; path = Modules/Feature; sourceTree = "<group>"; };
+		52F178E2281EAAF20048A831 /* Model */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Model; path = Modules/Model; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +42,7 @@
 			files = (
 				52B278E2281D79230059CF1A /* FormatterService in Frameworks */,
 				52B5BE6B281D6C6100BA6643 /* TransactionFeature in Frameworks */,
+				52F178E4281EAB100048A831 /* Model in Frameworks */,
 				52B5BE58281D695100BA6643 /* Core in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -50,6 +53,7 @@
 		52B5BE31281D66A800BA6643 = {
 			isa = PBXGroup;
 			children = (
+				52F178E2281EAAF20048A831 /* Model */,
 				52B278E3281D828B0059CF1A /* SharedUI */,
 				52B278E0281D77620059CF1A /* Service */,
 				52B5BE61281D6BF000BA6643 /* Feature */,
@@ -142,6 +146,7 @@
 				52B5BE57281D695100BA6643 /* Core */,
 				52B5BE6A281D6C6100BA6643 /* TransactionFeature */,
 				52B278E1281D79230059CF1A /* FormatterService */,
+				52F178E3281EAB100048A831 /* Model */,
 			);
 			productName = WeBudget;
 			productReference = 52B5BE3A281D66A800BA6643 /* WeBudget.app */;
@@ -444,6 +449,10 @@
 		52B5BE6A281D6C6100BA6643 /* TransactionFeature */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = TransactionFeature;
+		};
+		52F178E3281EAB100048A831 /* Model */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Model;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
