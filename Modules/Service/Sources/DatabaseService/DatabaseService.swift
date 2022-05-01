@@ -11,6 +11,7 @@ import Model
 public protocol DatabaseServiceProtocol {
     func save(transaction: Transaction)
     func fetchTransactions() -> [Transaction]
+    func delete(transactions: [Transaction])
 }
 
 public final class DatabaseService: DatabaseServiceProtocol {
@@ -41,6 +42,7 @@ public final class DatabaseService: DatabaseServiceProtocol {
         let newTransaction = CDTransaction(context: context)
         newTransaction.value = Int64(transaction.value)
         newTransaction.date = transaction.date
+        newTransaction.id = transaction.id
         
         saveIfNeeded()
     }
@@ -49,9 +51,30 @@ public final class DatabaseService: DatabaseServiceProtocol {
         let fetchRequest: NSFetchRequest<CDTransaction> = NSFetchRequest(entityName: "\(CDTransaction.self)")
         
         do {
-            let transaction = try context.fetch(fetchRequest)
+            let transactions = try context.fetch(fetchRequest)
             
-            return transaction.map { Transaction(transaction: $0) }
+            return transactions.map { Transaction(transaction: $0) }
+        } catch {
+            fatalError(error.localizedDescription)
+        }
+    }
+    
+    public func delete(transactions: [Transaction]) {
+        let fetchRequest: NSFetchRequest<CDTransaction> = NSFetchRequest(entityName: "\(CDTransaction.self)")
+        
+        do {
+            let allTransactions = try context.fetch(fetchRequest)
+            allTransactions
+                .filter { cdTransaction in
+                    transactions.contains {
+                        cdTransaction.id == $0.id
+                    }
+                }
+                .forEach {
+                    context.delete($0)
+                }
+            
+            saveIfNeeded()
         } catch {
             fatalError(error.localizedDescription)
         }

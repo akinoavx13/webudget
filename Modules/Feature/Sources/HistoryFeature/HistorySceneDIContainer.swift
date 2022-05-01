@@ -7,14 +7,21 @@
 //
 
 import UIKit.UINavigationController
+import BudgetService
 
 public final class HistorySceneDIContainer {
     
     public struct Dependencies {
 
+        // MARK: - Properties
+        
+        let budgetService: BudgetServiceProtocol
+        
         // MARK: - Lifecycle
 
-        public init() { }
+        public init(budgetService: BudgetServiceProtocol) {
+            self.budgetService = budgetService
+        }
     }
     
     // MARK: - Properties
@@ -37,4 +44,10 @@ public final class HistorySceneDIContainer {
 
 // MARK: - HistorySceneCoordinatorDependencies -
 
-extension HistorySceneDIContainer: HistorySceneCoordinatorDependencies { }
+extension HistorySceneDIContainer: HistorySceneCoordinatorDependencies {
+    
+    // MARK: - Properties
+    
+    var budgetService: BudgetServiceProtocol { dependencies.budgetService }
+    
+}

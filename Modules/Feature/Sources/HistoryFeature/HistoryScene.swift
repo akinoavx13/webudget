@@ -17,7 +17,21 @@ struct HistoryScene: View {
     // MARK: - Body
     
     var body: some View {
-        Text("Hello, World")
+        List {
+            ForEach(viewModel.sections) { section in
+                Section(header: Text(section.title)) {
+                    ForEach(section.transactions) { transaction in
+                        Text("\(transaction.value)")
+                    }
+                    .onDelete { indexSet in
+                        viewModel.delete(at: indexSet,
+                                         sectionId: section.id)
+                    }
+                }
+            }
+        }
+        .listStyle(InsetGroupedListStyle())
+        .onAppear(perform: viewModel.fetchTransactions)
     }
 }
 

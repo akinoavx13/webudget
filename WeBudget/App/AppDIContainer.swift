@@ -27,7 +27,7 @@ final class AppDIContainer {
     }()
     
     private(set) lazy var historySceneDIContainer: HistorySceneDIContainer = {
-        let dependencies = HistorySceneDIContainer.Dependencies()
+        let dependencies = HistorySceneDIContainer.Dependencies(budgetService: budgetService)
 
         return HistorySceneDIContainer(dependencies: dependencies)
     }()

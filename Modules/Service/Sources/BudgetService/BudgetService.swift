@@ -11,6 +11,7 @@ import Model
 public protocol BudgetServiceProtocol {
     func save(transaction: Transaction)
     func fetchTransactions() -> [Transaction]
+    func delete(transactions: [Transaction])
 }
 
 public final class BudgetService: BudgetServiceProtocol {
@@ -33,5 +34,9 @@ public final class BudgetService: BudgetServiceProtocol {
     
     public func fetchTransactions() -> [Transaction] {
         databaseService.fetchTransactions()
+    }
+    
+    public func delete(transactions: [Transaction]) {
+        databaseService.delete(transactions: transactions)
     }
 }

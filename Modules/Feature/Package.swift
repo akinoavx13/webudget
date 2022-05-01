@@ -28,7 +28,8 @@ let package = Package(
             .product(name: "BudgetService", package: "Service")
         ]),
         .target(name: "HistoryFeature", dependencies: [
-            "Core"
+            "Core",
+            "Model"
         ])
     ]
 )

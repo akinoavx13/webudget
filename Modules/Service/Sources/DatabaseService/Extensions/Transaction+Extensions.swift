@@ -14,6 +14,7 @@ extension Transaction {
     
     init(transaction: CDTransaction) {
         self.init(value: Int(transaction.value),
+                  id: transaction.id ?? UUID(),
                   date: transaction.date ?? Date())
     }
 }

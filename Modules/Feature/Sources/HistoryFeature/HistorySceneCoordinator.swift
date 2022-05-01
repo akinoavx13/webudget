@@ -9,8 +9,15 @@
 import UIKit.UINavigationController
 import SwiftUI
 import Core
+import BudgetService
 
-protocol HistorySceneCoordinatorDependencies: AnyObject { }
+protocol HistorySceneCoordinatorDependencies: AnyObject {
+    
+    // MARK: - Properties
+    
+    var budgetService: BudgetServiceProtocol { get }
+    
+}
 
 public final class HistorySceneCoordinator: CoordinatorProtocol {
     
@@ -34,7 +41,7 @@ public final class HistorySceneCoordinator: CoordinatorProtocol {
     
     @MainActor
     public func start(params: Any...) {
-        let viewModel = HistorySceneViewModel()
+        let viewModel = HistorySceneViewModel(budgetService: dependencies.budgetService)
         viewModel.coordinator = self
         
         let viewController = UIHostingController(rootView: HistoryScene(viewModel: viewModel))
