@@ -38,7 +38,7 @@ public final class HistorySceneCoordinator: CoordinatorProtocol {
         viewModel.coordinator = self
         
         let viewController = UIHostingController(rootView: HistoryScene(viewModel: viewModel))
-        viewController.title = "§History"
+        viewController.title = Translator.history
         navigationController.navigationBar.prefersLargeTitles = true
         
         navigationController.setViewControllers([viewController],

@@ -18,6 +18,8 @@
 		52B5BE5F281D69F000BA6643 /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B5BE5E281D69F000BA6643 /* TabBarCoordinator.swift */; };
 		52B5BE6B281D6C6100BA6643 /* TransactionFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 52B5BE6A281D6C6100BA6643 /* TransactionFeature */; };
 		52B953AD281ECA74005A8B38 /* HistoryFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 52B953AC281ECA74005A8B38 /* HistoryFeature */; };
+		52B953B0281ECD8D005A8B38 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 52B953B2281ECD8D005A8B38 /* Localizable.strings */; };
+		52B953B5281ECDCE005A8B38 /* Translator+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B953B4281ECDCE005A8B38 /* Translator+Extensions.swift */; };
 		52F178E4281EAB100048A831 /* Model in Frameworks */ = {isa = PBXBuildFile; productRef = 52F178E3281EAB100048A831 /* Model */; };
 /* End PBXBuildFile section */
 
@@ -34,6 +36,8 @@
 		52B5BE5A281D69CB00BA6643 /* AppCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		52B5BE5E281D69F000BA6643 /* TabBarCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
 		52B5BE61281D6BF000BA6643 /* Feature */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Feature; path = Modules/Feature; sourceTree = "<group>"; };
+		52B953B1281ECD8D005A8B38 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		52B953B4281ECDCE005A8B38 /* Translator+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Translator+Extensions.swift"; sourceTree = "<group>"; };
 		52F178E2281EAAF20048A831 /* Model */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Model; path = Modules/Model; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -80,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				52B5BE52281D681E00BA6643 /* App */,
+				52B953B3281ECDB7005A8B38 /* Extensions */,
 				52B5BE53281D682600BA6643 /* Scenes */,
 				52B5BE51281D681100BA6643 /* Resources */,
 			);
@@ -91,6 +96,7 @@
 			children = (
 				52B5BE4B281D66A900BA6643 /* Info.plist */,
 				52B5BE46281D66A900BA6643 /* Assets.xcassets */,
+				52B953B2281ECD8D005A8B38 /* Localizable.strings */,
 				52B5BE48281D66A900BA6643 /* LaunchScreen.storyboard */,
 			);
 			path = Resources;
@@ -127,6 +133,14 @@
 				52B5BE5E281D69F000BA6643 /* TabBarCoordinator.swift */,
 			);
 			path = TabBar;
+			sourceTree = "<group>";
+		};
+		52B953B3281ECDB7005A8B38 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				52B953B4281ECDCE005A8B38 /* Translator+Extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -197,6 +211,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				52B5BE4A281D66A900BA6643 /* LaunchScreen.storyboard in Resources */,
+				52B953B0281ECD8D005A8B38 /* Localizable.strings in Resources */,
 				52B5BE47281D66A900BA6643 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -230,6 +245,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				52B5BE5C281D69CB00BA6643 /* AppCoordinator.swift in Sources */,
+				52B953B5281ECDCE005A8B38 /* Translator+Extensions.swift in Sources */,
 				52B5BE3E281D66A800BA6643 /* AppDelegate.swift in Sources */,
 				52B5BE5F281D69F000BA6643 /* TabBarCoordinator.swift in Sources */,
 				52B5BE5B281D69CB00BA6643 /* AppDIContainer.swift in Sources */,
@@ -245,6 +261,14 @@
 				52B5BE49281D66A900BA6643 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		52B953B2281ECD8D005A8B38 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				52B953B1281ECD8D005A8B38 /* en */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

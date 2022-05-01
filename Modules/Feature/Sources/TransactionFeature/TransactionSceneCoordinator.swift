@@ -47,7 +47,7 @@ public final class TransactionSceneCoordinator: CoordinatorProtocol {
         viewModel.coordinator = self
         
         let viewController = UIHostingController(rootView: TransactionScene(viewModel: viewModel))
-        viewController.title = "§Transaction"
+        viewController.title = Translator.transaction
         navigationController.navigationBar.prefersLargeTitles = true
         
         navigationController.setViewControllers([viewController],

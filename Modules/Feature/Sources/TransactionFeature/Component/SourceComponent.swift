@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SharedUI
+import Core
 
 struct SourceComponent: View {
     
@@ -31,7 +32,7 @@ struct SourceComponent: View {
                 expenseDidTapAction()
                 impactGenerator.impactOccurred()
             } label: {
-                Text("§Expense")
+                Text(Translator.expense)
                     .font(.headline)
                     .bold()
                     .frame(maxWidth: .infinity)
@@ -46,7 +47,7 @@ struct SourceComponent: View {
                 incomeDidTapAction()
                 impactGenerator.impactOccurred()
             } label: {
-                Text("§Income")
+                Text(Translator.income)
                     .font(.headline)
                     .bold()
                     .frame(maxWidth: .infinity)
