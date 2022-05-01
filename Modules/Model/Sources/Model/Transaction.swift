@@ -14,14 +14,17 @@ public struct Transaction: Identifiable {
     public let id: UUID
     public let value: Int
     public let date: Date
+    public let isExpense: Bool
     
     // MARK: - Lifecycle
     
     public init(value: Int,
+                isExpense: Bool = true,
                 id: UUID = UUID(),
                 date: Date = Date()) {
-        self.value = value
         self.id = id
+        self.value = value
         self.date = date
+        self.isExpense = isExpense
     }
 }

@@ -20,8 +20,8 @@ struct HistoryScene: View {
         List {
             ForEach(viewModel.sections) { section in
                 Section(header: Text(section.title)) {
-                    ForEach(section.transactions) { transaction in
-                        Text("\(transaction.value)")
+                    ForEach(section.models) {
+                        TransactionComponent(model: $0)
                     }
                     .onDelete { indexSet in
                         viewModel.delete(at: indexSet,

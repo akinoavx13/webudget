@@ -8,6 +8,7 @@
 
 import UIKit.UINavigationController
 import BudgetService
+import FormatterService
 
 public final class HistorySceneDIContainer {
     
@@ -16,11 +17,14 @@ public final class HistorySceneDIContainer {
         // MARK: - Properties
         
         let budgetService: BudgetServiceProtocol
+        let formatterService: FormatterServiceProtocol
         
         // MARK: - Lifecycle
 
-        public init(budgetService: BudgetServiceProtocol) {
+        public init(budgetService: BudgetServiceProtocol,
+                    formatterService: FormatterServiceProtocol) {
             self.budgetService = budgetService
+            self.formatterService = formatterService
         }
     }
     
@@ -49,5 +53,5 @@ extension HistorySceneDIContainer: HistorySceneCoordinatorDependencies {
     // MARK: - Properties
     
     var budgetService: BudgetServiceProtocol { dependencies.budgetService }
-    
+    var formatterService: FormatterServiceProtocol { dependencies.formatterService }
 }

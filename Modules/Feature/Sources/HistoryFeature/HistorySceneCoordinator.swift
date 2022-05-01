@@ -10,13 +10,14 @@ import UIKit.UINavigationController
 import SwiftUI
 import Core
 import BudgetService
+import FormatterService
 
 protocol HistorySceneCoordinatorDependencies: AnyObject {
     
     // MARK: - Properties
     
     var budgetService: BudgetServiceProtocol { get }
-    
+    var formatterService: FormatterServiceProtocol { get }
 }
 
 public final class HistorySceneCoordinator: CoordinatorProtocol {
@@ -41,7 +42,8 @@ public final class HistorySceneCoordinator: CoordinatorProtocol {
     
     @MainActor
     public func start(params: Any...) {
-        let viewModel = HistorySceneViewModel(budgetService: dependencies.budgetService)
+        let viewModel = HistorySceneViewModel(budgetService: dependencies.budgetService,
+                                              formatterService: dependencies.formatterService)
         viewModel.coordinator = self
         
         let viewController = UIHostingController(rootView: HistoryScene(viewModel: viewModel))

@@ -62,7 +62,8 @@ final class TransactionSceneViewModel: ObservableObject {
     }
     
     func validateDidTapAction() {
-        budgetService.save(transaction: Transaction(value: transactionAmount))
+        budgetService.save(transaction: Transaction(value: transactionAmount,
+                                                    isExpense: sourceModel?.isExpenseSelected ?? true))
         transactionAmount = 0
     }
     

@@ -40,9 +40,10 @@ public final class DatabaseService: DatabaseServiceProtocol {
     
     public func save(transaction: Transaction) {
         let newTransaction = CDTransaction(context: context)
+        newTransaction.id = transaction.id
         newTransaction.value = Int64(transaction.value)
         newTransaction.date = transaction.date
-        newTransaction.id = transaction.id
+        newTransaction.isExpense = transaction.isExpense
         
         saveIfNeeded()
     }
