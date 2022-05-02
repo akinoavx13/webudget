@@ -18,13 +18,13 @@ struct TagComponent: View {
     }
     
     // MARK: - Properties
-    
-    @Environment(\.colorScheme) private var colorScheme
-    
+
     let models: [Model]
     
     let tagDidTapAction: @MainActor (UUID) -> Void
     let editTagsDidTapAction: @MainActor () -> Void
+    
+    @Environment(\.colorScheme) private var colorScheme
     
     // MARK: - Body
     
