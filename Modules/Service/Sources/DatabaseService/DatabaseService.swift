@@ -12,6 +12,10 @@ public protocol DatabaseServiceProtocol {
     func save(transaction: Transaction)
     func fetchTransactions() -> [Transaction]
     func delete(transactions: [Transaction])
+    
+    func save(tag: Tag)
+    func fetchTags() -> [Tag]
+    func delete(tags: [Tag])
 }
 
 public final class DatabaseService: DatabaseServiceProtocol {
@@ -54,7 +58,7 @@ public final class DatabaseService: DatabaseServiceProtocol {
         do {
             let transactions = try context.fetch(fetchRequest)
             
-            return transactions.map { Transaction(transaction: $0) }
+            return transactions.compactMap { Transaction(transaction: $0) }
         } catch {
             fatalError(error.localizedDescription)
         }
@@ -69,6 +73,47 @@ public final class DatabaseService: DatabaseServiceProtocol {
                 .filter { cdTransaction in
                     transactions.contains {
                         cdTransaction.id == $0.id
+                    }
+                }
+                .forEach {
+                    context.delete($0)
+                }
+            
+            saveIfNeeded()
+        } catch {
+            fatalError(error.localizedDescription)
+        }
+    }
+    
+    public func save(tag: Tag) {
+        let newTag = CDTag(context: context)
+        newTag.id = tag.id
+        newTag.value = tag.value
+        
+        saveIfNeeded()
+    }
+    
+    public func fetchTags() -> [Tag] {
+        let fetchRequest: NSFetchRequest<CDTag> = NSFetchRequest(entityName: "\(CDTag.self)")
+        
+        do {
+            let tags = try context.fetch(fetchRequest)
+            
+            return tags.compactMap { Tag(tag: $0) }
+        } catch {
+            fatalError(error.localizedDescription)
+        }
+    }
+    
+    public func delete(tags: [Tag]) {
+        let fetchRequest: NSFetchRequest<CDTag> = NSFetchRequest(entityName: "\(CDTag.self)")
+        
+        do {
+            let allTags = try context.fetch(fetchRequest)
+            allTags
+                .filter { cdTag in
+                    tags.contains {
+                        cdTag.id == $0.id
                     }
                 }
                 .forEach {

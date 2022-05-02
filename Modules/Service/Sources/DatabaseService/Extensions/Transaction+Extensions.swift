@@ -12,10 +12,14 @@ extension Transaction {
     
     // MARK: - Lifecycle
     
-    init(transaction: CDTransaction) {
+    init?(transaction: CDTransaction) {
+        guard let id = transaction.id,
+                let date = transaction.date
+        else { return nil }
+        
         self.init(value: Int(transaction.value),
                   isExpense: transaction.isExpense,
-                  id: transaction.id ?? UUID(),
-                  date: transaction.date ?? Date())
+                  id: id,
+                  date: date)
     }
 }
