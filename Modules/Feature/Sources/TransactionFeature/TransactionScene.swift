@@ -24,15 +24,23 @@ struct TransactionScene: View {
                 .amountModel
                 .map {
                     AmountComponent(model: $0)
+                        .padding(.horizontal)
                 }
             
             Spacer()
             
+            TagComponent(models: viewModel.tagModels,
+                         tagDidTapAction: viewModel.tagDidTapAction(uuid:),
+                         editTagsDidTapAction: viewModel.editTagsDidTapAction)
+            
             viewModel
                 .sourceModel
-                .map { SourceComponent(model: $0,
-                                       expenseDidTapAction: viewModel.expenseDidTapAction,
-                                       incomeDidTapAction: viewModel.incomeDidTapAction) }
+                .map {
+                    SourceComponent(model: $0,
+                                    expenseDidTapAction: viewModel.expenseDidTapAction,
+                                    incomeDidTapAction: viewModel.incomeDidTapAction)
+                    .padding(.horizontal)
+                }
             
             viewModel
                 .keyboardModel
@@ -41,9 +49,9 @@ struct TransactionScene: View {
                                       numberDidTapAction: viewModel.numberDidTapAction(value:),
                                       deleteDidTapAction: viewModel.deleteDidTapAction,
                                       validateDidTapAction: viewModel.validateDidTapAction)
+                    .padding(.horizontal)
                 }
         }
-        .padding()
     }
 }
 

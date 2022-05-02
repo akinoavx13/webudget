@@ -12,7 +12,7 @@ public struct AnimatedButtonStyle: ButtonStyle {
     // MARK: - Properties
     
     let backgroundColors: [Color]
-    let foreground: Color
+    let foregroundColor: Color
     let cornerRadius: CGFloat
     let paddingOffset: CGFloat
     let strokeColors: [Color]
@@ -24,7 +24,7 @@ public struct AnimatedButtonStyle: ButtonStyle {
     // MARK: - Lifecycle
     
     public init(backgroundColors: [Color] = [],
-                foreground: Color = .primary,
+                foregroundColor: Color = .primary,
                 cornerRadius: CGFloat = 0,
                 paddingOffset: CGFloat = 16,
                 strokeColors: [Color] = [],
@@ -33,7 +33,7 @@ public struct AnimatedButtonStyle: ButtonStyle {
                 topInnerShadowColor: Color = .clear,
                 bottomInnerShadowColor: Color = .clear) {
         self.backgroundColors = backgroundColors
-        self.foreground = foreground
+        self.foregroundColor = foregroundColor
         self.cornerRadius = cornerRadius
         self.paddingOffset = paddingOffset
         self.strokeColors = strokeColors
@@ -48,7 +48,7 @@ public struct AnimatedButtonStyle: ButtonStyle {
     public func makeBody(configuration: Configuration) -> some View {
         configuration
             .label
-            .foregroundColor(foreground)
+            .foregroundColor(foregroundColor)
             .padding(paddingOffset)
             .background(LinearGradient(colors: backgroundColors,
                                        startPoint: .leading,

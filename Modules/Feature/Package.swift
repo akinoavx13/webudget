@@ -29,7 +29,9 @@ let package = Package(
         ]),
         .target(name: "HistoryFeature", dependencies: [
             "Core",
-            "Model"
+            "Model",
+            .product(name: "BudgetService", package: "Service"),
+            .product(name: "FormatterService", package: "Service")
         ])
     ]
 )

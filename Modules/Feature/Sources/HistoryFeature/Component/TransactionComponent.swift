@@ -47,6 +47,8 @@ struct TransactionComponent_Previews: PreviewProvider {
                                                                value: "$ 5",
                                                                date: "May 1",
                                                                isExpense: true))
+        .previewLayout(.fixed(width: 375,
+                              height: 60))
     }
 }
 

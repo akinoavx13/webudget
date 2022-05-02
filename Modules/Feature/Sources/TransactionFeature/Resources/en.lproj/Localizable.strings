@@ -1,3 +1,4 @@
 "transaction" = "Transaction";
 "expense" = "Expense";
 "income" = "Income";
+"edit_tags" = "Edit tags ✍️";

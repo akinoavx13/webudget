@@ -31,7 +31,7 @@ struct HistoryScene: View {
             }
         }
         .listStyle(InsetGroupedListStyle())
-        .onAppear(perform: viewModel.fetchTransactions)
+        .onAppear { viewModel.fetchTransactions() }
     }
 }
 

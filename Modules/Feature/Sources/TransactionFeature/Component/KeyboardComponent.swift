@@ -70,7 +70,8 @@ struct KeyboardComponent: View {
                 .frame(maxWidth: .infinity)
         }
         .buttonStyle(AnimatedButtonStyle(backgroundColors: [.secondary.opacity(0.1)],
-                                         cornerRadius: 8))
+                                         cornerRadius: 8,
+                                         paddingOffset: 12))
     }
     
     private func makeIconButtonView(icon: String,
@@ -89,7 +90,8 @@ struct KeyboardComponent: View {
         }
         .disabled(isDisabled)
         .buttonStyle(AnimatedButtonStyle(backgroundColors: [.secondary.opacity(0.1)],
-                                         cornerRadius: 8))
+                                         cornerRadius: 8,
+                                         paddingOffset: 12))
     }
 }
 

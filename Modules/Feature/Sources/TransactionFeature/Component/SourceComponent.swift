@@ -38,7 +38,7 @@ struct SourceComponent: View {
                     .frame(maxWidth: .infinity)
             }
             .buttonStyle(AnimatedButtonStyle(backgroundColors: [.red.opacity(model.isExpenseSelected ? 0.5 : 0.1)],
-                                             foreground: model.isExpenseSelected ? .white : .red,
+                                             foregroundColor: model.isExpenseSelected ? .white : .red,
                                              cornerRadius: 8,
                                              strokeColors: [.red.opacity(model.isExpenseSelected ? 0.5 : 0.1)],
                                              strokeWidth: 2))
@@ -53,7 +53,7 @@ struct SourceComponent: View {
                     .frame(maxWidth: .infinity)
             }
             .buttonStyle(AnimatedButtonStyle(backgroundColors: [.green.opacity(model.isExpenseSelected ? 0.1 : 0.5)],
-                                             foreground: model.isExpenseSelected ? .green : .white,
+                                             foregroundColor: model.isExpenseSelected ? .green : .white,
                                              cornerRadius: 8,
                                              strokeColors: [.green.opacity(model.isExpenseSelected ? 0.1 : 0.5 )],
                                              strokeWidth: 2))

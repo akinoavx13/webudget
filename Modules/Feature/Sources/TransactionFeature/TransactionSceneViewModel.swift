@@ -11,6 +11,7 @@ import FormatterService
 import Core
 import BudgetService
 import Model
+import Foundation.NSUUID
 
 @MainActor
 final class TransactionSceneViewModel: ObservableObject {
@@ -22,6 +23,7 @@ final class TransactionSceneViewModel: ObservableObject {
     @Published private(set) var amountModel: AmountComponent.Model?
     @Published private(set) var keyboardModel: KeyboardComponent.Model?
     @Published private(set) var sourceModel: SourceComponent.Model?
+    @Published private(set) var tagModels: [TagComponent.Model] = []
     
     private var transactionAmount: Int = 0 {
         didSet {
@@ -73,6 +75,14 @@ final class TransactionSceneViewModel: ObservableObject {
     
     func incomeDidTapAction() {
         sourceModel = SourceComponent.Model(isExpenseSelected: false)
+    }
+    
+    func tagDidTapAction(uuid: UUID) {
+        
+    }
+    
+    func editTagsDidTapAction() {
+        
     }
 }
 

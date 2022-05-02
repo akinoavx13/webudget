@@ -13,6 +13,7 @@ import BudgetService
 import Core
 import FormatterService
 
+@MainActor
 final class HistorySceneViewModel: ObservableObject {
     
     struct Section: Identifiable {
