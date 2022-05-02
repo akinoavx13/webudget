@@ -11,7 +11,6 @@ import SwiftUI
 import Core
 import FormatterService
 import BudgetService
-import EditTagFeature
 
 protocol TransactionSceneCoordinatorDependencies: AnyObject {
     
@@ -19,7 +18,6 @@ protocol TransactionSceneCoordinatorDependencies: AnyObject {
     
     var formatterService: FormatterServiceProtocol { get }
     var budgetService: BudgetServiceProtocol { get }
-    var editTagSceneDIContainer: EditTagSceneDIContainer { get }
 }
 
 public final class TransactionSceneCoordinator: CoordinatorProtocol {
@@ -57,12 +55,4 @@ public final class TransactionSceneCoordinator: CoordinatorProtocol {
     }
     
     public func stop() { fatalError("Should not be stopped.") }
-    
-    @MainActor
-    public func presentEditTagScene() {
-        dependencies
-            .editTagSceneDIContainer
-            .makeCoordinator(navigationController: navigationController)
-            .start()
-    }
 }

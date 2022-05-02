@@ -1,5 +1,5 @@
 //
-//  EditTagSceneDIContainer.swift
+//  TagListSceneDIContainer.swift
 //  WeBudget
 //
 //  Created by Maxime Maheo on 02/05/2022.
@@ -9,16 +9,16 @@
 import UIKit.UINavigationController
 import BudgetService
 
-public final class EditTagSceneDIContainer {
+public final class TagListSceneDIContainer {
     
     public struct Dependencies {
-
+        
         // MARK: - Properties
         
         var budetService: BudgetServiceProtocol
         
         // MARK: - Lifecycle
-
+        
         public init(budetService: BudgetServiceProtocol) {
             self.budetService = budetService
         }
@@ -36,15 +36,15 @@ public final class EditTagSceneDIContainer {
     
     // MARK: - Methods
     
-    public func makeCoordinator(navigationController: UINavigationController) -> EditTagSceneCoordinator {
-        EditTagSceneCoordinator(navigationController: navigationController,
+    public func makeCoordinator(navigationController: UINavigationController) -> TagListSceneCoordinator {
+        TagListSceneCoordinator(navigationController: navigationController,
                                 dependencies: self)
     }
 }
 
-// MARK: - EditTagSceneCoordinatorDependencies -
+// MARK: - TagSceneCoordinatorDependencies -
 
-extension EditTagSceneDIContainer: EditTagSceneCoordinatorDependencies {
+extension TagListSceneDIContainer: TagListSceneCoordinatorDependencies {
     
     // MARK: - Properties
     

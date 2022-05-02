@@ -12,7 +12,7 @@ let package = Package(
     products: [
         .library(name: "TransactionFeature", targets: ["TransactionFeature"]),
         .library(name: "HistoryFeature", targets: ["HistoryFeature"]),
-        .library(name: "EditTagFeature", targets: ["EditTagFeature"])
+        .library(name: "TagListFeature", targets: ["TagListFeature"])
     ],
     dependencies: [
         .package(name: "Core", path: "./Core"),
@@ -25,9 +25,7 @@ let package = Package(
             "Core",
             "SharedUI",
             "Model",
-            "EditTagFeature",
-            .product(name: "FormatterService", package: "Service"),
-            .product(name: "BudgetService", package: "Service")
+            .product(name: "FormatterService", package: "Service")
         ]),
         .target(name: "HistoryFeature", dependencies: [
             "Core",
@@ -35,7 +33,7 @@ let package = Package(
             .product(name: "BudgetService", package: "Service"),
             .product(name: "FormatterService", package: "Service")
         ]),
-        .target(name: "EditTagFeature", dependencies: [
+        .target(name: "TagListFeature", dependencies: [
             "Core",
             "Model",
             .product(name: "BudgetService", package: "Service")

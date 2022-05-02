@@ -22,7 +22,6 @@ struct TagComponent: View {
     let models: [Model]
     
     let tagDidTapAction: @MainActor (UUID) -> Void
-    let editTagsDidTapAction: @MainActor () -> Void
     
     @Environment(\.colorScheme) private var colorScheme
     
@@ -40,17 +39,6 @@ struct TagComponent: View {
                         makeButtonTagView(model: model)
                     }
                 }
-                
-                Button(Translator.editTags) { editTagsDidTapAction() }
-                    .buttonStyle(AnimatedButtonStyle(backgroundColors: [colorScheme == .dark ? .black : .white],
-                                                     cornerRadius: 8,
-                                                     paddingOffset: 12,
-                                                     strokeColors: [colorScheme == .dark ?
-                                                        .white.opacity(0.3) :
-                                                            .black.opacity(0.3)],
-                                                     strokeWidth: 1))
-                    .padding(.trailing, 16)
-                    .padding(.leading, models.isEmpty ? 16 : 0)
             }
             .frame(height: 48)
         }
@@ -84,14 +72,12 @@ struct TagComponent_Previews: PreviewProvider {
             TagComponent(models: [TagComponent.Model(id: UUID(),
                                                      title: "Groceries 🛒",
                                                      isSelected: true)],
-                         tagDidTapAction: { _ in },
-                         editTagsDidTapAction: { })
+                         tagDidTapAction: { _ in })
             
             TagComponent(models: [TagComponent.Model(id: UUID(),
                                                      title: "Groceries 🛒",
                                                      isSelected: false)],
-                         tagDidTapAction: { _ in },
-                         editTagsDidTapAction: { })
+                         tagDidTapAction: { _ in })
             .preferredColorScheme(.dark)
         }
         .previewLayout(.fixed(width: 378,

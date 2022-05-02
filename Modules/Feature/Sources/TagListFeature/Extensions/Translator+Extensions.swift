@@ -8,5 +8,5 @@
 import Core
 
 extension Translator {
-    static let editTags = Translator.string(key: "edit_tags", bundle: .module)
+    static let tags = Translator.string(key: "tags", bundle: .module)
 }

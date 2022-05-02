@@ -30,8 +30,7 @@ struct TransactionScene: View {
             Spacer()
             
             TagComponent(models: viewModel.tagModels,
-                         tagDidTapAction: viewModel.tagDidTapAction(uuid:),
-                         editTagsDidTapAction: viewModel.editTagsDidTapAction)
+                         tagDidTapAction: viewModel.tagDidTapAction(uuid:))
             
             viewModel
                 .sourceModel

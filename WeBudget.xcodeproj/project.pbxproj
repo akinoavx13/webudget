@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		527B193528201E2F0017CB62 /* EditTagFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 527B193428201E2F0017CB62 /* EditTagFeature */; };
+		527B193928203A1E0017CB62 /* TagListFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 527B193828203A1E0017CB62 /* TagListFeature */; };
 		52AD9CBB281EAF9100E2620E /* BudgetService in Frameworks */ = {isa = PBXBuildFile; productRef = 52AD9CBA281EAF9100E2620E /* BudgetService */; };
 		52B278E2281D79230059CF1A /* FormatterService in Frameworks */ = {isa = PBXBuildFile; productRef = 52B278E1281D79230059CF1A /* FormatterService */; };
 		52B5BE3E281D66A800BA6643 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B5BE3D281D66A800BA6643 /* AppDelegate.swift */; };
@@ -49,12 +49,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				52B278E2281D79230059CF1A /* FormatterService in Frameworks */,
+				527B193928203A1E0017CB62 /* TagListFeature in Frameworks */,
 				52AD9CBB281EAF9100E2620E /* BudgetService in Frameworks */,
 				52B953AD281ECA74005A8B38 /* HistoryFeature in Frameworks */,
 				52B5BE6B281D6C6100BA6643 /* TransactionFeature in Frameworks */,
 				52F178E4281EAB100048A831 /* Model in Frameworks */,
 				52B5BE58281D695100BA6643 /* Core in Frameworks */,
-				527B193528201E2F0017CB62 /* EditTagFeature in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -170,7 +170,7 @@
 				52F178E3281EAB100048A831 /* Model */,
 				52AD9CBA281EAF9100E2620E /* BudgetService */,
 				52B953AC281ECA74005A8B38 /* HistoryFeature */,
-				527B193428201E2F0017CB62 /* EditTagFeature */,
+				527B193828203A1E0017CB62 /* TagListFeature */,
 			);
 			productName = WeBudget;
 			productReference = 52B5BE3A281D66A800BA6643 /* WeBudget.app */;
@@ -476,9 +476,9 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		527B193428201E2F0017CB62 /* EditTagFeature */ = {
+		527B193828203A1E0017CB62 /* TagListFeature */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = EditTagFeature;
+			productName = TagListFeature;
 		};
 		52AD9CBA281EAF9100E2620E /* BudgetService */ = {
 			isa = XCSwiftPackageProductDependency;

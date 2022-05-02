@@ -1,5 +1,5 @@
 //
-//  EditTagSceneViewModel.swift
+//  TagListSceneViewModel.swift
 //  WeBudget
 //
 //  Created by Maxime Maheo on 02/05/2022.
@@ -12,11 +12,11 @@ import Foundation
 import Model
 
 @MainActor
-final class EditTagSceneViewModel: ObservableObject {
+final class TagListSceneViewModel: ObservableObject {
     
     // MARK: - Properties
     
-    weak var coordinator: EditTagSceneCoordinator?
+    weak var coordinator: TagListSceneCoordinator?
     
     @Published private(set) var models: [TagComponent.Model] = []
     
@@ -48,8 +48,8 @@ final class EditTagSceneViewModel: ObservableObject {
 
 #if DEBUG
 
-extension EditTagSceneViewModel {
-    static let preview = EditTagSceneViewModel(budgetService: BudgetService.preview)
+extension TagListSceneViewModel {
+    static let preview = TagListSceneViewModel(budgetService: BudgetService.preview)
 }
 
 #endif

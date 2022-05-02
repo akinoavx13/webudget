@@ -9,7 +9,6 @@
 import FormatterService
 import UIKit.UINavigationController
 import BudgetService
-import EditTagFeature
 
 public final class TransactionSceneDIContainer {
     
@@ -19,16 +18,13 @@ public final class TransactionSceneDIContainer {
         
         let formatterService: FormatterServiceProtocol
         let budgetService: BudgetServiceProtocol
-        let editTagSceneDIContainer: EditTagSceneDIContainer
 
         // MARK: - Lifecycle
 
         public init(formatterService: FormatterServiceProtocol,
-                    budgetService: BudgetServiceProtocol,
-                    editTagSceneDIContainer: EditTagSceneDIContainer) {
+                    budgetService: BudgetServiceProtocol) {
             self.formatterService = formatterService
             self.budgetService = budgetService
-            self.editTagSceneDIContainer = editTagSceneDIContainer
         }
     }
     
@@ -58,6 +54,5 @@ extension TransactionSceneDIContainer: TransactionSceneCoordinatorDependencies {
     
     var formatterService: FormatterServiceProtocol { dependencies.formatterService }
     var budgetService: BudgetServiceProtocol { dependencies.budgetService }
-    var editTagSceneDIContainer: EditTagSceneDIContainer { dependencies.editTagSceneDIContainer }
 
 }

@@ -1,5 +1,5 @@
 //
-//  EditTagSceneCoordinator.swift
+//  TagListSceneCoordinator.swift
 //  WeBudget
 //
 //  Created by Maxime Maheo on 02/05/2022.
@@ -11,7 +11,7 @@ import SwiftUI
 import Core
 import BudgetService
 
-protocol EditTagSceneCoordinatorDependencies: AnyObject {
+protocol TagListSceneCoordinatorDependencies: AnyObject {
     
     // MARK: - Properties
     
@@ -19,7 +19,7 @@ protocol EditTagSceneCoordinatorDependencies: AnyObject {
     
 }
 
-public final class EditTagSceneCoordinator: CoordinatorProtocol {
+public final class TagListSceneCoordinator: CoordinatorProtocol {
     
     // MARK: - Properties
     
@@ -27,12 +27,12 @@ public final class EditTagSceneCoordinator: CoordinatorProtocol {
     public var children: [CoordinatorProtocol] = []
     
     private let navigationController: UINavigationController
-    private let dependencies: EditTagSceneCoordinatorDependencies
+    private let dependencies: TagListSceneCoordinatorDependencies
 
     // MARK: - Lifecycle
     
     init(navigationController: UINavigationController,
-         dependencies: EditTagSceneCoordinatorDependencies) {
+         dependencies: TagListSceneCoordinatorDependencies) {
         self.navigationController = navigationController
         self.dependencies = dependencies
     }
@@ -41,13 +41,15 @@ public final class EditTagSceneCoordinator: CoordinatorProtocol {
     
     @MainActor
     public func start(params: Any...) {
-        let viewModel = EditTagSceneViewModel(budgetService: dependencies.budetService)
+        let viewModel = TagListSceneViewModel(budgetService: dependencies.budetService)
         viewModel.coordinator = self
         
-        let viewController = UIHostingController(rootView: EditTagScene(viewModel: viewModel))
-        viewController.title = Translator.editTags
+        let viewController = UIHostingController(rootView: TagListScene(viewModel: viewModel))
+        viewController.title = Translator.tags
         
-        navigationController.pushViewController(viewController, animated: true)
+        navigationController.navigationBar.prefersLargeTitles = true
+        navigationController.setViewControllers([viewController],
+                                                animated: false)
     }
     
     public func stop() { fatalError("Should not be stopped.") }

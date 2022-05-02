@@ -1,5 +1,5 @@
 //
-//  EditTagScene.swift
+//  TagListScene.swift
 //  WeBudget
 //
 //  Created by Maxime Maheo on 02/05/2022.
@@ -8,11 +8,11 @@
 
 import SwiftUI
 
-struct EditTagScene: View {
+struct TagListScene: View {
     
     // MARK: - Properties
     
-    @StateObject var viewModel: EditTagSceneViewModel
+    @StateObject var viewModel: TagListSceneViewModel
     
     // MARK: - Body
     
@@ -30,9 +30,9 @@ struct EditTagScene: View {
 
 #if DEBUG
 
-struct EditTagScene_Previews: PreviewProvider {
+struct TagListScene_Previews: PreviewProvider {
     static var previews: some View {
-        EditTagScene(viewModel: EditTagSceneViewModel.preview)
+        TagListScene(viewModel: TagListSceneViewModel.preview)
     }
 }
 
