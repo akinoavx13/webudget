@@ -35,6 +35,9 @@ struct TagComponent: View {
                     if models.first == model {
                         makeButtonTagView(model: model)
                             .padding(.leading, 16)
+                    } else if models.last == model {
+                        makeButtonTagView(model: model)
+                            .padding(.trailing, 16)
                     } else {
                         makeButtonTagView(model: model)
                     }
