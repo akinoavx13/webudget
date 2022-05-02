@@ -72,7 +72,7 @@ final class HistorySceneViewModel: ObservableObject {
 #if DEBUG
 
 extension HistorySceneViewModel {
-    static let preview = HistorySceneViewModel(budgetService: BudgetService(),
+    static let preview = HistorySceneViewModel(budgetService: BudgetService.preview,
                                                formatterService: FormatterService())
 }
 

@@ -40,3 +40,11 @@ public final class BudgetService: BudgetServiceProtocol {
         databaseService.delete(transactions: transactions)
     }
 }
+
+#if DEBUG
+
+extension BudgetService {
+    public static let preview: BudgetServiceProtocol = BudgetService(databaseService: DatabaseServiceMock())
+}
+
+#endif

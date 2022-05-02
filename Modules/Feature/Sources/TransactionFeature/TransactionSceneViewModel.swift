@@ -90,7 +90,7 @@ final class TransactionSceneViewModel: ObservableObject {
 
 extension TransactionSceneViewModel {
     static let preview = TransactionSceneViewModel(formatterService: FormatterService(),
-                                                   budgetService: BudgetService())
+                                                   budgetService: BudgetService.preview)
 }
 
 #endif
