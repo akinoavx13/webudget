@@ -63,7 +63,7 @@ final class TabBarCoordinator: CoordinatorProtocol {
                 .makeCoordinator(navigationController: navigationController)
             
             let tabBarItem = UITabBarItem(title: Translator.transaction,
-                                          image: UIImage(systemName: "creditcard"),
+                                          image: UIImage(systemName: "creditcard.fill"),
                                           selectedImage: nil)
             navigationController.tabBarItem = tabBarItem
         case .history:
