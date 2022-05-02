@@ -98,7 +98,7 @@ final class TransactionSceneViewModel: ObservableObject {
     }
     
     func editTagsDidTapAction() {
-        
+        coordinator?.presentEditTagScene()
     }
     
     // MARK: - Methods

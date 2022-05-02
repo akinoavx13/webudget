@@ -30,6 +30,7 @@ struct HistoryScene: View {
                 }
             }
         }
+        .toolbar { EditButton() }
         .listStyle(InsetGroupedListStyle())
         .onAppear { viewModel.fetchTransactions() }
     }

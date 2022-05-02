@@ -9,6 +9,7 @@ import TransactionFeature
 import FormatterService
 import BudgetService
 import HistoryFeature
+import EditTagFeature
 
 final class AppDIContainer {
     
@@ -21,7 +22,8 @@ final class AppDIContainer {
     
     private(set) lazy var transactionSceneDIContainer: TransactionSceneDIContainer = {
         let dependencies = TransactionSceneDIContainer.Dependencies(formatterService: formatterService,
-                                                                    budgetService: budgetService)
+                                                                    budgetService: budgetService,
+                                                                    editTagSceneDIContainer: editTagSceneDIContainer)
 
         return TransactionSceneDIContainer(dependencies: dependencies)
     }()
@@ -31,5 +33,11 @@ final class AppDIContainer {
                                                                 formatterService: formatterService)
 
         return HistorySceneDIContainer(dependencies: dependencies)
+    }()
+    
+    private(set) lazy var editTagSceneDIContainer: EditTagSceneDIContainer = {
+        let dependencies = EditTagSceneDIContainer.Dependencies(budetService: budgetService)
+
+        return EditTagSceneDIContainer(dependencies: dependencies)
     }()
 }
