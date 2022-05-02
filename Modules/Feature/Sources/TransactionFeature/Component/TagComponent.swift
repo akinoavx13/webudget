@@ -45,7 +45,9 @@ struct TagComponent: View {
                     .buttonStyle(AnimatedButtonStyle(backgroundColors: [colorScheme == .dark ? .black : .white],
                                                      cornerRadius: 8,
                                                      paddingOffset: 12,
-                                                     strokeColors: [colorScheme == .dark ? .white : .black],
+                                                     strokeColors: [colorScheme == .dark ?
+                                                        .white.opacity(0.3) :
+                                                            .black.opacity(0.3)],
                                                      strokeWidth: 1))
                     .padding(.trailing, 16)
                     .padding(.leading, models.isEmpty ? 16 : 0)
@@ -58,14 +60,19 @@ struct TagComponent: View {
     
     @MainActor
     private func makeButtonTagView(model: Model) -> some View {
-        Button(model.title) { tagDidTapAction(model.id) }
-            .buttonStyle(AnimatedButtonStyle(backgroundColors: [colorScheme == .dark ? .black : .white],
-                                             cornerRadius: 8,
-                                             paddingOffset: 12,
-                                             strokeColors: [colorScheme == .dark ?
-                                                .white.opacity(model.isSelected ? 1 : 0.3) :
-                                                    .black.opacity(model.isSelected ? 1 : 0.3)],
-                                             strokeWidth: 1))
+        Button {
+            tagDidTapAction(model.id)
+        } label: {
+            Text(model.title)
+                .fontWeight(model.isSelected ? .bold : .regular)
+        }
+        .buttonStyle(AnimatedButtonStyle(backgroundColors: [colorScheme == .dark ? .black : .white],
+                                         cornerRadius: 8,
+                                         paddingOffset: 12,
+                                         strokeColors: [colorScheme == .dark ?
+                                            .white.opacity(model.isSelected ? 1 : 0.3) :
+                                                .black.opacity(model.isSelected ? 1 : 0.3)],
+                                         strokeWidth: 1))
     }
 }
 
@@ -76,7 +83,7 @@ struct TagComponent_Previews: PreviewProvider {
         Group {
             TagComponent(models: [TagComponent.Model(id: UUID(),
                                                      title: "Groceries 🛒",
-                                                     isSelected: false)],
+                                                     isSelected: true)],
                          tagDidTapAction: { _ in },
                          editTagsDidTapAction: { })
             

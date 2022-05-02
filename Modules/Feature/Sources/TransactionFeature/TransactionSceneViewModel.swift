@@ -34,6 +34,8 @@ final class TransactionSceneViewModel: ObservableObject {
                                                     isValidateButtonDisabled: transactionAmount <= 0)
         }
     }
+    private var selectedTag: UUID?
+    private var tags: [Tag] = []
     
     private let formatterService: FormatterServiceProtocol
     private let budgetService: BudgetServiceProtocol
@@ -49,6 +51,8 @@ final class TransactionSceneViewModel: ObservableObject {
         keyboardModel = KeyboardComponent.Model(isDeleteButtonDisabled: true,
                                                 isValidateButtonDisabled: true)
         sourceModel = SourceComponent.Model(isExpenseSelected: true)
+        
+        fetchTags()
     }
     
     // MARK: - Methods
@@ -78,11 +82,35 @@ final class TransactionSceneViewModel: ObservableObject {
     }
     
     func tagDidTapAction(uuid: UUID) {
+        if selectedTag == uuid {
+            selectedTag = nil
+        } else {
+            selectedTag = uuid
+        }
         
+        refreshSelectedTags()
     }
     
     func editTagsDidTapAction() {
         
+    }
+    
+    // MARK: - Methods
+    
+    private func fetchTags() {
+        tags = budgetService.fetchTags()
+        
+        refreshSelectedTags()
+    }
+    
+    private func refreshSelectedTags() {
+        tagModels = budgetService
+            .fetchTags()
+            .map { tag in
+                TagComponent.Model(id: tag.id,
+                                   title: tag.value,
+                                   isSelected: selectedTag == tag.id)
+            }
     }
 }
 

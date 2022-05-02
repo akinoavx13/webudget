@@ -28,18 +28,7 @@ public final class DatabaseService: DatabaseServiceProtocol {
     // MARK: - Lifecycle
     
     public init() {
-        guard let modelUrl = Bundle.module.url(forResource: "Model", withExtension: "momd"),
-              let model = NSManagedObjectModel(contentsOf: modelUrl)
-        else { fatalError("Could not init DatabaseService") }
-        
-        persistentContainer = NSPersistentContainer(name: "Model", managedObjectModel: model)
-        persistentContainer.loadPersistentStores { _, error in
-            if let error = error {
-                fatalError(error.localizedDescription)
-            }
-        }
-        
-        context = persistentContainer.newBackgroundContext()
+        initDatabase()
     }
     
     public func save(transaction: Transaction) {
@@ -127,6 +116,21 @@ public final class DatabaseService: DatabaseServiceProtocol {
     }
     
     // MARK: - Private methods
+    
+    private func initDatabase() {
+        guard let modelUrl = Bundle.module.url(forResource: "Model", withExtension: "momd"),
+              let model = NSManagedObjectModel(contentsOf: modelUrl)
+        else { fatalError("Could not init DatabaseService") }
+        
+        persistentContainer = NSPersistentContainer(name: "Model", managedObjectModel: model)
+        persistentContainer.loadPersistentStores { _, error in
+            if let error = error {
+                fatalError(error.localizedDescription)
+            }
+        }
+        
+        context = persistentContainer.newBackgroundContext()
+    }
     
     private func saveIfNeeded() {
         guard context.hasChanges else { return }

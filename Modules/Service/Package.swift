@@ -5,6 +5,7 @@ import PackageDescription
 
 let package = Package(
     name: "Service",
+    defaultLocalization: "en",
     platforms: [
         .iOS(.v15)
     ],
@@ -14,7 +15,8 @@ let package = Package(
         .library(name: "BudgetService", targets: ["BudgetService"])
     ],
     dependencies: [
-        .package(name: "Model", path: "./Model")
+        .package(name: "Model", path: "./Model"),
+        .package(name: "Core", path: "./Core")
     ],
     targets: [
         .target(name: "FormatterService", dependencies: []),
@@ -23,7 +25,8 @@ let package = Package(
         ]),
         .target(name: "BudgetService", dependencies: [
             "Model",
-            "DatabaseService"
+            "DatabaseService",
+            "Core"
         ])
     ]
 )
