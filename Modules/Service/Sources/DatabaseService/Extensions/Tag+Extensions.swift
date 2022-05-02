@@ -12,9 +12,9 @@ extension Tag {
     
     // MARK: - Lifecycle
     
-    init?(tag: CDTag) {
-        guard let value = tag.value,
-              let id = tag.id
+    init?(tag: CDTag?) {
+        guard let value = tag?.value,
+              let id = tag?.id
         else { return nil }
         
         self.init(value: value,

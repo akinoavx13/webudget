@@ -20,6 +20,7 @@ extension Transaction {
         self.init(value: Int(transaction.value),
                   isExpense: transaction.isExpense,
                   id: id,
-                  date: date)
+                  date: date,
+                  tag: Tag(tag: transaction.tag))
     }
 }

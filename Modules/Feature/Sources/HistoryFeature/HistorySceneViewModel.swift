@@ -51,7 +51,8 @@ final class HistorySceneViewModel: ObservableObject {
                                                                                   date: formatterService.formatDate(value: $0.date,
                                                                                                                     dateStyle: .medium,
                                                                                                                     timeStyle: .none),
-                                                                                  isExpense: $0.isExpense)})]
+                                                                                  isExpense: $0.isExpense,
+                                                                                  tagTitle: $0.tag?.value)})]
     }
     
     func delete(at offsets: IndexSet,

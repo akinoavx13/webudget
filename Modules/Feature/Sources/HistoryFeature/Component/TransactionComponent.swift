@@ -14,6 +14,7 @@ struct TransactionComponent: View {
         let value: String
         let date: String
         let isExpense: Bool
+        let tagTitle: String?
     }
     
     // MARK: - Properties
@@ -23,18 +24,25 @@ struct TransactionComponent: View {
     // MARK: - Body
     
     var body: some View {
-        HStack(spacing: 4) {
-            Text(model.isExpense ? "-" : "+")
-                .font(.headline)
-                .foregroundColor(model.isExpense ? .red : .green)
+        VStack {
+            HStack(spacing: 4) {
+                Text(model.isExpense ? "-" : "+")
+                    .font(.headline)
+                    .foregroundColor(model.isExpense ? .red : .green)
+                
+                Text(model.value)
+                    .font(.headline)
+                
+                Spacer()
+                
+                Text(model.date)
+                    .foregroundColor(.secondary)
+            }
             
-            Text(model.value)
-                .font(.headline)
+            if let tagTitle = model.tagTitle {
+                Text(tagTitle)
+            }
             
-            Spacer()
-            
-            Text(model.date)
-                .foregroundColor(.secondary)
         }
     }
 }
@@ -46,7 +54,8 @@ struct TransactionComponent_Previews: PreviewProvider {
         TransactionComponent(model: TransactionComponent.Model(id: UUID(),
                                                                value: "$ 5",
                                                                date: "May 1",
-                                                               isExpense: true))
+                                                               isExpense: true,
+                                                               tagTitle: "Groceries"))
         .previewLayout(.fixed(width: 375,
                               height: 60))
     }

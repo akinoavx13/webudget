@@ -34,8 +34,12 @@ final class TransactionSceneViewModel: ObservableObject {
                                                     isValidateButtonDisabled: transactionAmount <= 0)
         }
     }
-    private var selectedTag: UUID?
-    private var tags: [Tag] = []
+    private var selectedTagId: UUID? {
+        didSet { refreshTagModels() }
+    }
+    private var tags: [Tag] = [] {
+        didSet { refreshTagModels() }
+    }
     
     private let formatterService: FormatterServiceProtocol
     private let budgetService: BudgetServiceProtocol
@@ -68,9 +72,13 @@ final class TransactionSceneViewModel: ObservableObject {
     }
     
     func validateDidTapAction() {
+        let selectedTag = tags.first(where: { $0.id == selectedTagId })
+        
         budgetService.save(transaction: Transaction(value: transactionAmount,
-                                                    isExpense: sourceModel?.isExpenseSelected ?? true))
+                                                    isExpense: sourceModel?.isExpenseSelected ?? true,
+                                                    tag: selectedTag))
         transactionAmount = 0
+        selectedTagId = nil
     }
     
     func expenseDidTapAction() {
@@ -82,13 +90,11 @@ final class TransactionSceneViewModel: ObservableObject {
     }
     
     func tagDidTapAction(uuid: UUID) {
-        if selectedTag == uuid {
-            selectedTag = nil
+        if selectedTagId == uuid {
+            selectedTagId = nil
         } else {
-            selectedTag = uuid
+            selectedTagId = uuid
         }
-        
-        refreshSelectedTags()
     }
     
     func editTagsDidTapAction() {
@@ -99,17 +105,14 @@ final class TransactionSceneViewModel: ObservableObject {
     
     private func fetchTags() {
         tags = budgetService.fetchTags()
-        
-        refreshSelectedTags()
     }
     
-    private func refreshSelectedTags() {
-        tagModels = budgetService
-            .fetchTags()
+    private func refreshTagModels() {
+        tagModels = tags
             .map { tag in
                 TagComponent.Model(id: tag.id,
                                    title: tag.value,
-                                   isSelected: selectedTag == tag.id)
+                                   isSelected: selectedTagId == tag.id)
             }
     }
 }

@@ -32,11 +32,7 @@ public final class DatabaseService: DatabaseServiceProtocol {
     }
     
     public func save(transaction: Transaction) {
-        let newTransaction = CDTransaction(context: context)
-        newTransaction.id = transaction.id
-        newTransaction.value = Int64(transaction.value)
-        newTransaction.date = transaction.date
-        newTransaction.isExpense = transaction.isExpense
+        create(transaction: transaction)
         
         saveIfNeeded()
     }
@@ -60,9 +56,7 @@ public final class DatabaseService: DatabaseServiceProtocol {
             let allTransactions = try context.fetch(fetchRequest)
             allTransactions
                 .filter { cdTransaction in
-                    transactions.contains {
-                        cdTransaction.id == $0.id
-                    }
+                    transactions.contains { cdTransaction.id == $0.id }
                 }
                 .forEach {
                     context.delete($0)
@@ -75,9 +69,7 @@ public final class DatabaseService: DatabaseServiceProtocol {
     }
     
     public func save(tag: Tag) {
-        let newTag = CDTag(context: context)
-        newTag.id = tag.id
-        newTag.value = tag.value
+        create(tag: tag)
         
         saveIfNeeded()
     }
@@ -101,9 +93,7 @@ public final class DatabaseService: DatabaseServiceProtocol {
             let allTags = try context.fetch(fetchRequest)
             allTags
                 .filter { cdTag in
-                    tags.contains {
-                        cdTag.id == $0.id
-                    }
+                    tags.contains { cdTag.id == $0.id }
                 }
                 .forEach {
                     context.delete($0)
@@ -140,5 +130,33 @@ public final class DatabaseService: DatabaseServiceProtocol {
         } catch {
             fatalError(error.localizedDescription)
         }
+    }
+    
+    @discardableResult
+    private func create(tag: Tag) -> CDTag {
+        let newTag = CDTag(context: context)
+        newTag.id = tag.id
+        newTag.value = tag.value
+        
+        return newTag
+    }
+    
+    @discardableResult
+    private func create(transaction: Transaction) -> CDTransaction {
+        let newTransaction = CDTransaction(context: context)
+        newTransaction.id = transaction.id
+        newTransaction.value = Int64(transaction.value)
+        newTransaction.date = transaction.date
+        newTransaction.isExpense = transaction.isExpense
+        
+        if let tag = transaction.tag {
+            let fetchRequest: NSFetchRequest<CDTag> = NSFetchRequest(entityName: "\(CDTag.self)")
+            fetchRequest.predicate = NSPredicate(format: "id == %@", tag.id.uuidString)
+            let tag = try? context.fetch(fetchRequest).first
+            
+            newTransaction.tag = tag
+        }
+        
+        return newTransaction
     }
 }
