@@ -25,7 +25,8 @@ let package = Package(
             "Core",
             "SharedUI",
             "Model",
-            .product(name: "FormatterService", package: "Service")
+            .product(name: "FormatterService", package: "Service"),
+            .product(name: "BudgetService", package: "Service")
         ]),
         .target(name: "HistoryFeature", dependencies: [
             "Core",
