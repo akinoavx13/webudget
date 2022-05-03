@@ -51,6 +51,7 @@ struct TransactionScene: View {
                     .padding(.horizontal)
                 }
         }
+        .onAppear { viewModel.fetchTags() }
     }
 }
 

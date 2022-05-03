@@ -55,8 +55,6 @@ final class TransactionSceneViewModel: ObservableObject {
         keyboardModel = KeyboardComponent.Model(isDeleteButtonDisabled: true,
                                                 isValidateButtonDisabled: true)
         sourceModel = SourceComponent.Model(isExpenseSelected: true)
-        
-        fetchTags()
     }
     
     // MARK: - Methods
@@ -79,6 +77,8 @@ final class TransactionSceneViewModel: ObservableObject {
                                                     tag: selectedTag))
         transactionAmount = 0
         selectedTagId = nil
+        
+        fetchTags()
     }
     
     func expenseDidTapAction() {
@@ -97,11 +97,11 @@ final class TransactionSceneViewModel: ObservableObject {
         }
     }
     
-    // MARK: - Methods
-    
-    private func fetchTags() {
+    func fetchTags() {
         tags = budgetService.fetchTags()
     }
+    
+    // MARK: - Methods
     
     private func refreshTagModels() {
         tagModels = tags
