@@ -13,6 +13,8 @@ public protocol FormatterServiceProtocol {
     func formatDate(value: Date,
                     dateStyle: DateFormatter.Style,
                     timeStyle: DateFormatter.Style) -> String
+    func formatDate(value: Date,
+                    format: String) -> String
 }
 
 public final class FormatterService: FormatterServiceProtocol {
@@ -20,19 +22,24 @@ public final class FormatterService: FormatterServiceProtocol {
     // MARK: - Properties
 
     private let numberFormatter: NumberFormatter
-    private let dateFormatter: DateFormatter
+    private let dateStyleFormatter: DateFormatter
+    private let dateFormatFormatter: DateFormatter
 
     // MARK: - Lifecycle
 
     public init(numberFormatter: NumberFormatter = NumberFormatter(),
-                dateFormatter: DateFormatter = DateFormatter()) {
+                dateStyleFormatter: DateFormatter = DateFormatter(),
+                dateFormatFormatter: DateFormatter = DateFormatter()) {
         self.numberFormatter = numberFormatter
         self.numberFormatter.locale = .current
         self.numberFormatter.numberStyle = .currency
         self.numberFormatter.minimumFractionDigits = 0
         
-        self.dateFormatter = dateFormatter
-        self.dateFormatter.locale = .current
+        self.dateStyleFormatter = dateStyleFormatter
+        self.dateStyleFormatter.locale = .current
+        
+        self.dateFormatFormatter = dateFormatFormatter
+        self.dateFormatFormatter.locale = .current
     }
 
     // MARK: - Methods
@@ -48,9 +55,16 @@ public final class FormatterService: FormatterServiceProtocol {
     public func formatDate(value: Date,
                            dateStyle: DateFormatter.Style,
                            timeStyle: DateFormatter.Style) -> String {
-        dateFormatter.dateStyle = dateStyle
-        dateFormatter.timeStyle = timeStyle
+        dateStyleFormatter.dateStyle = dateStyle
+        dateStyleFormatter.timeStyle = timeStyle
         
-        return dateFormatter.string(from: value)
+        return dateStyleFormatter.string(from: value)
+    }
+    
+    public func formatDate(value: Date,
+                           format: String) -> String {
+        dateFormatFormatter.dateFormat = format
+        
+        return dateFormatFormatter.string(from: value)
     }
 }

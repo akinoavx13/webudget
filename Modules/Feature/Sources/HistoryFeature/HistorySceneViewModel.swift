@@ -45,20 +45,37 @@ final class HistorySceneViewModel: ObservableObject {
     
     func fetchTransactions() {
         transactions = budgetService.fetchTransactions()
-        sections = [Section(title: "TODO",
-                            models: transactions.map { TransactionComponent.Model(id: $0.id,
-                                                                                  value: formatterService.formatCurrency(value: $0.value),
-                                                                                  date: formatterService.formatDate(value: $0.date,
-                                                                                                                    dateStyle: .medium,
-                                                                                                                    timeStyle: .none),
-                                                                                  isExpense: $0.isExpense,
-                                                                                  tagTitle: $0.tag?.value)})]
+        
+        var sections: [String: [Transaction]] = [:]
+        transactions
+            .forEach { transaction in
+                let key = formatterService.formatDate(value: transaction.date, format: "MMM")
+                
+                if sections[key] == nil {
+                    sections[key] = []
+                    sections[key]?.append(transaction)
+                } else {
+                    sections[key]?.append(transaction)
+                }
+            }
+        
+        self.sections = sections
+            .map { iterator in
+                Section(title: iterator.key,
+                        models: iterator.value.map { TransactionComponent.Model(id: $0.id,
+                                                                                value: formatterService.formatCurrency(value: $0.value),
+                                                                                date: formatterService.formatDate(value: $0.date,
+                                                                                                                  dateStyle: .medium,
+                                                                                                                  timeStyle: .none),
+                                                                                isExpense: $0.isExpense,
+                                                                                tagTitle: $0.tag?.value)})
+            }
     }
     
     func delete(at offsets: IndexSet,
                 sectionId: UUID) {
         guard let section = sections.first(where: { $0.id == sectionId }) else { return }
-
+        
         let transactionsIdToDelete: [UUID] = offsets.map { section.models[$0].id }
         let transactionsToDelete: [Transaction] = transactions
             .filter { transaction in
