@@ -47,8 +47,8 @@ final class TagListSceneViewModel: ObservableObject {
         fetchTags()
     }
     
-    func presentTagDetail(uuid: UUID?) {
-        
+    func presentTagDetails(uuid: UUID?) {
+        coordinator?.presentTagDetails(uuid: uuid)
     }
 }
 

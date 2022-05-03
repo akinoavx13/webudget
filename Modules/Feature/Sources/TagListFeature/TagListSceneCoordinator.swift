@@ -10,13 +10,14 @@ import UIKit.UINavigationController
 import SwiftUI
 import Core
 import BudgetService
+import TagDetailsFeature
 
 protocol TagListSceneCoordinatorDependencies: AnyObject {
     
     // MARK: - Properties
     
     var budetService: BudgetServiceProtocol { get }
-    
+    var tagDetailsSceneDIContainer: TagDetailsSceneDIContainer { get }
 }
 
 public final class TagListSceneCoordinator: CoordinatorProtocol {
@@ -53,4 +54,12 @@ public final class TagListSceneCoordinator: CoordinatorProtocol {
     }
     
     public func stop() { fatalError("Should not be stopped.") }
+    
+    @MainActor
+    func presentTagDetails(uuid: UUID?) {
+        dependencies
+            .tagDetailsSceneDIContainer
+            .makeCoordinator(navigationController: navigationController)
+            .start()
+    }
 }

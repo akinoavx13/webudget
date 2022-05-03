@@ -21,6 +21,7 @@
 		52B953AD281ECA74005A8B38 /* HistoryFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 52B953AC281ECA74005A8B38 /* HistoryFeature */; };
 		52B953B0281ECD8D005A8B38 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 52B953B2281ECD8D005A8B38 /* Localizable.strings */; };
 		52B953B5281ECDCE005A8B38 /* Translator+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B953B4281ECDCE005A8B38 /* Translator+Extensions.swift */; };
+		52C9F9592821791500F9B237 /* TagDetailsFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 52C9F9582821791500F9B237 /* TagDetailsFeature */; };
 		52F178E4281EAB100048A831 /* Model in Frameworks */ = {isa = PBXBuildFile; productRef = 52F178E3281EAB100048A831 /* Model */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +56,7 @@
 				52B5BE6B281D6C6100BA6643 /* TransactionFeature in Frameworks */,
 				52F178E4281EAB100048A831 /* Model in Frameworks */,
 				52B5BE58281D695100BA6643 /* Core in Frameworks */,
+				52C9F9592821791500F9B237 /* TagDetailsFeature in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -171,6 +173,7 @@
 				52AD9CBA281EAF9100E2620E /* BudgetService */,
 				52B953AC281ECA74005A8B38 /* HistoryFeature */,
 				527B193828203A1E0017CB62 /* TagListFeature */,
+				52C9F9582821791500F9B237 /* TagDetailsFeature */,
 			);
 			productName = WeBudget;
 			productReference = 52B5BE3A281D66A800BA6643 /* WeBudget.app */;
@@ -499,6 +502,10 @@
 		52B953AC281ECA74005A8B38 /* HistoryFeature */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = HistoryFeature;
+		};
+		52C9F9582821791500F9B237 /* TagDetailsFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = TagDetailsFeature;
 		};
 		52F178E3281EAB100048A831 /* Model */ = {
 			isa = XCSwiftPackageProductDependency;

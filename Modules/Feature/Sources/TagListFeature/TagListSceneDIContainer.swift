@@ -8,6 +8,7 @@
 
 import UIKit.UINavigationController
 import BudgetService
+import TagDetailsFeature
 
 public final class TagListSceneDIContainer {
     
@@ -16,11 +17,14 @@ public final class TagListSceneDIContainer {
         // MARK: - Properties
         
         var budetService: BudgetServiceProtocol
+        var tagDetailsSceneDIContainer: TagDetailsSceneDIContainer
         
         // MARK: - Lifecycle
         
-        public init(budetService: BudgetServiceProtocol) {
+        public init(budetService: BudgetServiceProtocol,
+                    tagDetailsSceneDIContainer: TagDetailsSceneDIContainer) {
             self.budetService = budetService
+            self.tagDetailsSceneDIContainer = tagDetailsSceneDIContainer
         }
     }
     
@@ -49,5 +53,6 @@ extension TagListSceneDIContainer: TagListSceneCoordinatorDependencies {
     // MARK: - Properties
     
     var budetService: BudgetServiceProtocol { dependencies.budetService }
+    var tagDetailsSceneDIContainer: TagDetailsSceneDIContainer { dependencies.tagDetailsSceneDIContainer }
     
 }

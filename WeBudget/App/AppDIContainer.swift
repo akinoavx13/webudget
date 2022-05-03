@@ -10,6 +10,7 @@ import FormatterService
 import BudgetService
 import HistoryFeature
 import TagListFeature
+import TagDetailsFeature
 
 final class AppDIContainer {
     
@@ -35,8 +36,15 @@ final class AppDIContainer {
     }()
     
     private(set) lazy var tagListSceneDIContainer: TagListSceneDIContainer = {
-        let dependencies = TagListSceneDIContainer.Dependencies(budetService: budgetService)
+        let dependencies = TagListSceneDIContainer.Dependencies(budetService: budgetService,
+                                                                tagDetailsSceneDIContainer: tagDetailsSceneDIContainer)
 
         return TagListSceneDIContainer(dependencies: dependencies)
+    }()
+    
+    private(set) lazy var tagDetailsSceneDIContainer: TagDetailsSceneDIContainer = {
+        let dependencies = TagDetailsSceneDIContainer.Dependencies()
+
+        return TagDetailsSceneDIContainer(dependencies: dependencies)
     }()
 }

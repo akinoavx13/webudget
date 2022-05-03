@@ -35,7 +35,7 @@ struct TagListScene: View {
             
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button {
-                    viewModel.presentTagDetail(uuid: nil)
+                    viewModel.presentTagDetails(uuid: nil)
                 } label: {
                     Image(systemName: "plus")
                 }
