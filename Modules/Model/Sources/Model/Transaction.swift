@@ -7,7 +7,7 @@
 
 import Foundation.NSDate
 
-public struct Transaction: Identifiable {
+public struct Transaction {
     
     // MARK: - Properties
     

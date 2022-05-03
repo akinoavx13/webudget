@@ -18,6 +18,7 @@ extension Tag {
         else { return nil }
         
         self.init(value: value,
-                  id: id)
+                  id: id,
+                  transactionsCount: tag?.transactions?.count)
     }
 }

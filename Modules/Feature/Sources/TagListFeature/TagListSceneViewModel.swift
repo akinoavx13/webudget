@@ -10,6 +10,7 @@ import Combine
 import BudgetService
 import Foundation
 import Model
+import Core
 
 @MainActor
 final class TagListSceneViewModel: ObservableObject {
@@ -36,7 +37,8 @@ final class TagListSceneViewModel: ObservableObject {
         tags = budgetService .fetchTags()
         models = tags
             .map { TagComponent.Model(id: $0.id,
-                                      title: $0.value) }
+                                      title: $0.value,
+                                      subtitle: Translator.xTransactions(value: $0.transactionsCount)) }
     }
     
     func delete(at offsets: IndexSet) {

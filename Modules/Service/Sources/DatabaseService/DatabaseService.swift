@@ -43,7 +43,9 @@ public final class DatabaseService: DatabaseServiceProtocol {
         do {
             let transactions = try context.fetch(fetchRequest)
             
-            return transactions.compactMap { Transaction(transaction: $0) }
+            return transactions
+                .compactMap { Transaction(transaction: $0) }
+                .sorted(by: { $0.date > $1.date })
         } catch {
             fatalError(error.localizedDescription)
         }
@@ -80,7 +82,9 @@ public final class DatabaseService: DatabaseServiceProtocol {
         do {
             let tags = try context.fetch(fetchRequest)
             
-            return tags.compactMap { Tag(tag: $0) }
+            return tags
+                .compactMap { Tag(tag: $0) }
+                .sorted(by: { $0.transactionsCount > $1.transactionsCount })
         } catch {
             fatalError(error.localizedDescription)
         }
@@ -152,11 +156,12 @@ public final class DatabaseService: DatabaseServiceProtocol {
         if let tag = transaction.tag {
             let fetchRequest: NSFetchRequest<CDTag> = NSFetchRequest(entityName: "\(CDTag.self)")
             fetchRequest.predicate = NSPredicate(format: "id == %@", tag.id.uuidString)
+            
             let tag = try? context.fetch(fetchRequest).first
             
             newTransaction.tag = tag
         }
-        
+
         return newTransaction
     }
 }

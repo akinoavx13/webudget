@@ -12,6 +12,7 @@ struct TagComponent: View {
     struct Model: Identifiable {
         let id: UUID
         let title: String
+        let subtitle: String
     }
 
     // MARK: - Properties
@@ -22,7 +23,14 @@ struct TagComponent: View {
     
     var body: some View {
         HStack {
-            Text(model.title)
+            VStack(alignment: .leading,
+                   spacing: 6) {
+                Text(model.title)
+                
+                Text(model.subtitle)
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+            }
             
             Spacer()
             
@@ -36,8 +44,18 @@ struct TagComponent: View {
 
 struct TagComponent_Previews: PreviewProvider {
     static var previews: some View {
-        TagComponent(model: TagComponent.Model(id: UUID(),
-                                               title: "Groceries 🛒"))
+        Group {
+            TagComponent(model: TagComponent.Model(id: UUID(),
+                                                   title: "Groceries 🛒",
+                                                   subtitle: "10 transactions"))
+            
+            TagComponent(model: TagComponent.Model(id: UUID(),
+                                                   title: "Groceries 🛒",
+                                                   subtitle: "10 transactions"))
+            .preferredColorScheme(.dark)
+        }
+        .previewLayout(.fixed(width: 375,
+                              height: 80))
     }
 }
 
