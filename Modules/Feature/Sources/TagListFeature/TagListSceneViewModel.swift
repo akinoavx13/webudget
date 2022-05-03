@@ -44,6 +44,10 @@ final class TagListSceneViewModel: ObservableObject {
 
         fetchTags()
     }
+    
+    func presentTagDetail(uuid: UUID?) {
+        
+    }
 }
 
 #if DEBUG

@@ -19,11 +19,28 @@ struct TagListScene: View {
     var body: some View {
         List {
             ForEach(viewModel.models) { model in
-                TagComponent(model: model)
+                Button {
+                    viewModel.presentTagDetail(uuid: model.id)
+                } label: {
+                    TagComponent(model: model)
+                }
+                .buttonStyle(PlainButtonStyle())
             }
             .onDelete { viewModel.delete(at: $0) }
         }
-        .toolbar { EditButton() }
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                EditButton()
+            }
+            
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button {
+                    viewModel.presentTagDetail(uuid: nil)
+                } label: {
+                    Image(systemName: "plus")
+                }
+            }
+        }
         .onAppear { viewModel.fetchTags() }
     }
 }

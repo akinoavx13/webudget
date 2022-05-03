@@ -21,7 +21,14 @@ struct TagComponent: View {
     // MARK: - Body
     
     var body: some View {
-        Text(model.title)
+        HStack {
+            Text(model.title)
+            
+            Spacer()
+            
+            Image(systemName: "info.circle")
+                .foregroundColor(.accentColor)
+        }
     }
 }
 
