@@ -11,13 +11,21 @@ import BudgetService
 import Model
 import Foundation.NSUUID
 
+protocol TagDetailsSceneViewModelDelegate: AnyObject {
+    func tagDetailsSceneViewModel(_ sender: TagDetailsSceneViewModel,
+                                  tagDidSave tag: Tag)
+    func tagDetailsSceneViewModel(_ sender: TagDetailsSceneViewModel,
+                                  tagDidDelete tag: Tag)
+}
+
 @MainActor
 final class TagDetailsSceneViewModel: ObservableObject {
     
     // MARK: - Properties
     
     weak var coordinator: TagDetailsSceneCoordinator?
- 
+    weak var delegate: TagDetailsSceneViewModelDelegate?
+    
     @Published var tagName: String = ""
     @Published private(set) var transactionsCount: Int = 0
 
@@ -48,6 +56,7 @@ final class TagDetailsSceneViewModel: ObservableObject {
             tag.name = tagName
             
             budgetService.updateTag(tag: tag)
+            delegate?.tagDetailsSceneViewModel(self, tagDidSave: tag)
         }
         
         coordinator?.stop()
@@ -55,7 +64,9 @@ final class TagDetailsSceneViewModel: ObservableObject {
     
     func delete() {
         if let tag = tag {
+            
             budgetService.delete(tags: [tag])
+            delegate?.tagDetailsSceneViewModel(self, tagDidDelete: tag)
         }
         
         coordinator?.stop()

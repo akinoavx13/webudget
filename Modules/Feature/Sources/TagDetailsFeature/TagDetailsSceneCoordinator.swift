@@ -10,9 +10,10 @@ import UIKit.UINavigationController
 import SwiftUI
 import Core
 import BudgetService
+import Model
 
 public protocol TagDetailsSceneCoordinatorDelegate: AnyObject {
-    func tagDetailsSceneCoordinatorDidStop(_ sender: TagDetailsSceneCoordinator)
+    func tagDetailsSceneCoordinatorNeedRefreshTags(_ sender: TagDetailsSceneCoordinator)
 }
 
 protocol TagDetailsSceneCoordinatorDependencies: AnyObject {
@@ -51,6 +52,7 @@ public final class TagDetailsSceneCoordinator: CoordinatorProtocol {
         let viewModel = TagDetailsSceneViewModel(budgetService: dependencies.budgetService,
                                                  id: id)
         viewModel.coordinator = self
+        viewModel.delegate = self
         
         let viewController = UIHostingController(rootView: TagDetailsScene(viewModel: viewModel))
         
@@ -58,8 +60,21 @@ public final class TagDetailsSceneCoordinator: CoordinatorProtocol {
     }
     
     public func stop() {
-        delegate?.tagDetailsSceneCoordinatorDidStop(self)
         navigationController.dismiss(animated: true)
         parentCoordinator?.childDidStop(self)
+    }
+}
+
+// MARK: - TagDetailsSceneViewModelDelegate -
+
+extension TagDetailsSceneCoordinator: TagDetailsSceneViewModelDelegate {
+    func tagDetailsSceneViewModel(_ sender: TagDetailsSceneViewModel,
+                                  tagDidSave tag: Tag) {
+        delegate?.tagDetailsSceneCoordinatorNeedRefreshTags(self)
+    }
+    
+    func tagDetailsSceneViewModel(_ sender: TagDetailsSceneViewModel,
+                                  tagDidDelete tag: Tag) {
+        delegate?.tagDetailsSceneCoordinatorNeedRefreshTags(self)
     }
 }
