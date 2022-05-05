@@ -29,7 +29,8 @@ public final class TagListSceneCoordinator: CoordinatorProtocol {
     
     private let navigationController: UINavigationController
     private let dependencies: TagListSceneCoordinatorDependencies
-
+    private var viewModel: TagListSceneViewModel?
+    
     // MARK: - Lifecycle
     
     init(navigationController: UINavigationController,
@@ -42,7 +43,9 @@ public final class TagListSceneCoordinator: CoordinatorProtocol {
     
     @MainActor
     public func start(params: Any?...) {
-        let viewModel = TagListSceneViewModel(budgetService: dependencies.budetService)
+        viewModel = TagListSceneViewModel(budgetService: dependencies.budetService)
+        
+        guard let viewModel = viewModel else { fatalError("Could not find TagListSceneViewModel") }
         viewModel.coordinator = self
         
         let viewController = UIHostingController(rootView: TagListScene(viewModel: viewModel))
@@ -62,6 +65,16 @@ public final class TagListSceneCoordinator: CoordinatorProtocol {
             .makeCoordinator(navigationController: navigationController)
         
         children.append(coordinator)
+        coordinator.delegate = self
         coordinator.start(params: uuid)
+    }
+}
+
+// MARK: - TagDetailsSceneCoordinatorDelegate -
+
+extension TagListSceneCoordinator: TagDetailsSceneCoordinatorDelegate {
+    @MainActor
+    public func tgagDetailsSceneCoordinatorDidStop(_ sender: TagDetailsSceneCoordinator) {
+        viewModel?.fetchTags()
     }
 }

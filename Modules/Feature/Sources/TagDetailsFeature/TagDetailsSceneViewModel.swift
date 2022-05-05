@@ -44,6 +44,12 @@ final class TagDetailsSceneViewModel: ObservableObject {
     }
     
     func save() {
+        if var tag = tag {
+            tag.name = tagName
+            
+            budgetService.updateTag(tag: tag)
+        }
+        
         coordinator?.stop()
     }
 }

@@ -11,6 +11,10 @@ import SwiftUI
 import Core
 import BudgetService
 
+public protocol TagDetailsSceneCoordinatorDelegate: AnyObject {
+    func tgagDetailsSceneCoordinatorDidStop(_ sender: TagDetailsSceneCoordinator)
+}
+
 protocol TagDetailsSceneCoordinatorDependencies: AnyObject {
     
     // MARK: - Properties
@@ -22,6 +26,8 @@ protocol TagDetailsSceneCoordinatorDependencies: AnyObject {
 public final class TagDetailsSceneCoordinator: CoordinatorProtocol {
     
     // MARK: - Properties
+    
+    public weak var delegate: TagDetailsSceneCoordinatorDelegate?
     
     public var parentCoordinator: CoordinatorProtocol?
     public var children: [CoordinatorProtocol] = []
@@ -53,6 +59,7 @@ public final class TagDetailsSceneCoordinator: CoordinatorProtocol {
     }
     
     public func stop() {
+        delegate?.tgagDetailsSceneCoordinatorDidStop(self)
         navigationController.dismiss(animated: true)
         parentCoordinator?.childDidStop(self)
     }

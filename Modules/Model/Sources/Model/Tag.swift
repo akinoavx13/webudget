@@ -11,9 +11,9 @@ public struct Tag {
     
     // MARK: - Properties
     
-    public let id: UUID
-    public let name: String
-    public let transactionsCount: Int
+    public var id: UUID
+    public var name: String
+    public var transactionsCount: Int
 
     // MARK: - Lifecycle
     

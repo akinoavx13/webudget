@@ -16,6 +16,7 @@ public protocol DatabaseServiceProtocol {
     func save(tag: Tag)
     func fetchTags() -> [Tag]
     func fetchTag(uuid: UUID) -> Tag?
+    func updateTag(tag: Tag)
     func delete(tags: [Tag])
 }
 
@@ -33,7 +34,10 @@ public final class DatabaseService: DatabaseServiceProtocol {
     }
     
     public func save(transaction: Transaction) {
-        create(transaction: transaction)
+        let cdTransaction = CDTransaction(context: context)
+
+        updateValues(of: cdTransaction,
+                     with: transaction)
         
         saveIfNeeded()
     }
@@ -72,7 +76,10 @@ public final class DatabaseService: DatabaseServiceProtocol {
     }
     
     public func save(tag: Tag) {
-        create(tag: tag)
+        let cdTag = CDTag(context: context)
+        
+        updateValues(of: cdTag,
+                     with: tag)
         
         saveIfNeeded()
     }
@@ -99,6 +106,22 @@ public final class DatabaseService: DatabaseServiceProtocol {
             let tags = try context.fetch(fetchRequest)
             
             return Tag(tag: tags.first)
+        } catch {
+            fatalError(error.localizedDescription)
+        }
+    }
+    
+    public func updateTag(tag: Tag) {
+        let fetchRequest: NSFetchRequest<CDTag> = NSFetchRequest(entityName: "\(CDTag.self)")
+        fetchRequest.predicate = NSPredicate(format: "id == %@", tag.id.uuidString)
+
+        do {
+            guard let cdTag = try context.fetch(fetchRequest).first else { return }
+            
+            updateValues(of: cdTag,
+                         with: tag)
+            
+            saveIfNeeded()
         } catch {
             fatalError(error.localizedDescription)
         }
@@ -150,22 +173,18 @@ public final class DatabaseService: DatabaseServiceProtocol {
         }
     }
     
-    @discardableResult
-    private func create(tag: Tag) -> CDTag {
-        let newTag = CDTag(context: context)
-        newTag.id = tag.id
-        newTag.name = tag.name
-        
-        return newTag
+    private func updateValues(of cdTag: CDTag,
+                              with tag: Tag) {
+        cdTag.id = tag.id
+        cdTag.name = tag.name
     }
     
-    @discardableResult
-    private func create(transaction: Transaction) -> CDTransaction {
-        let newTransaction = CDTransaction(context: context)
-        newTransaction.id = transaction.id
-        newTransaction.amount = Int64(transaction.amount)
-        newTransaction.date = transaction.date
-        newTransaction.isExpense = transaction.isExpense
+    private func updateValues(of cdTransaction: CDTransaction,
+                              with transaction: Transaction) {
+        cdTransaction.id = transaction.id
+        cdTransaction.amount = Int64(transaction.amount)
+        cdTransaction.date = transaction.date
+        cdTransaction.isExpense = transaction.isExpense
         
         if let tag = transaction.tag {
             let fetchRequest: NSFetchRequest<CDTag> = NSFetchRequest(entityName: "\(CDTag.self)")
@@ -173,9 +192,7 @@ public final class DatabaseService: DatabaseServiceProtocol {
             
             let tag = try? context.fetch(fetchRequest).first
             
-            newTransaction.tag = tag
+            cdTransaction.tag = tag
         }
-
-        return newTransaction
     }
 }
