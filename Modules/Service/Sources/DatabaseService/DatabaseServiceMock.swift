@@ -34,5 +34,7 @@ public final class DatabaseServiceMock: DatabaseServiceProtocol {
     public func save(tag: Tag) { }
     public func fetchTags() -> [Tag] { [Tag(value: "Groceries 🛒",
                                             id: UUID())] }
+    public func fetchTag(uuid: UUID) -> Tag? { Tag(value: "Groceries 🛒",
+                                                   id: UUID()) }
     public func delete(tags: [Tag]) { }
 }

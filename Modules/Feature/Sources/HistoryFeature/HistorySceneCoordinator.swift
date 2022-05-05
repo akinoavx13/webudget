@@ -41,7 +41,7 @@ public final class HistorySceneCoordinator: CoordinatorProtocol {
     // MARK: - Methods
     
     @MainActor
-    public func start(params: Any...) {
+    public func start(params: Any?...) {
         let viewModel = HistorySceneViewModel(budgetService: dependencies.budgetService,
                                               formatterService: dependencies.formatterService)
         viewModel.coordinator = self

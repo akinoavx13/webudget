@@ -15,6 +15,7 @@ public protocol DatabaseServiceProtocol {
     
     func save(tag: Tag)
     func fetchTags() -> [Tag]
+    func fetchTag(uuid: UUID) -> Tag?
     func delete(tags: [Tag])
 }
 
@@ -85,6 +86,19 @@ public final class DatabaseService: DatabaseServiceProtocol {
             return tags
                 .compactMap { Tag(tag: $0) }
                 .sorted(by: { $0.transactionsCount > $1.transactionsCount })
+        } catch {
+            fatalError(error.localizedDescription)
+        }
+    }
+    
+    public func fetchTag(uuid: UUID) -> Tag? {
+        let fetchRequest: NSFetchRequest<CDTag> = NSFetchRequest(entityName: "\(CDTag.self)")
+        fetchRequest.predicate = NSPredicate(format: "id == %@", uuid.uuidString)
+
+        do {
+            let tags = try context.fetch(fetchRequest)
+            
+            return Tag(tag: tags.first)
         } catch {
             fatalError(error.localizedDescription)
         }

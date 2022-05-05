@@ -41,7 +41,7 @@ public final class TransactionSceneCoordinator: CoordinatorProtocol {
     // MARK: - Methods
     
     @MainActor
-    public func start(params: Any...) {
+    public func start(params: Any?...) {
         let viewModel = TransactionSceneViewModel(formatterService: dependencies.formatterService,
                                                   budgetService: dependencies.budgetService)
         viewModel.coordinator = self

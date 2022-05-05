@@ -43,7 +43,7 @@ final class AppDIContainer {
     }()
     
     private(set) lazy var tagDetailsSceneDIContainer: TagDetailsSceneDIContainer = {
-        let dependencies = TagDetailsSceneDIContainer.Dependencies()
+        let dependencies = TagDetailsSceneDIContainer.Dependencies(budgetService: budgetService)
 
         return TagDetailsSceneDIContainer(dependencies: dependencies)
     }()

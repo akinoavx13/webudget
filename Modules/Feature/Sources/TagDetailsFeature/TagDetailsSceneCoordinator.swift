@@ -9,8 +9,15 @@
 import UIKit.UINavigationController
 import SwiftUI
 import Core
+import BudgetService
 
-protocol TagDetailsSceneCoordinatorDependencies: AnyObject { }
+protocol TagDetailsSceneCoordinatorDependencies: AnyObject {
+    
+    // MARK: - Properties
+    
+    var budgetService: BudgetServiceProtocol { get }
+    
+}
 
 public final class TagDetailsSceneCoordinator: CoordinatorProtocol {
     
@@ -33,8 +40,11 @@ public final class TagDetailsSceneCoordinator: CoordinatorProtocol {
     // MARK: - Methods
     
     @MainActor
-    public func start(params: Any...) {
-        let viewModel = TagDetailsSceneViewModel()
+    public func start(params: Any?...) {
+        guard let id = params.first as? UUID else { fatalError("Could not find tag id") }
+        
+        let viewModel = TagDetailsSceneViewModel(budgetService: dependencies.budgetService,
+                                                 id: id)
         viewModel.coordinator = self
         
         let viewController = UIHostingController(rootView: TagDetailsScene(viewModel: viewModel))
@@ -42,5 +52,8 @@ public final class TagDetailsSceneCoordinator: CoordinatorProtocol {
         navigationController.present(viewController, animated: true)
     }
     
-    public func stop() { fatalError("Should not be stopped.") }
+    public func stop() {
+        navigationController.dismiss(animated: true)
+        parentCoordinator?.childDidStop(self)
+    }
 }

@@ -14,13 +14,13 @@ public protocol CoordinatorProtocol: AnyObject {
     
     // MARK: - Methods
     
-    func start(params: Any...)
+    func start(params: Any?...)
     func stop()
 }
 
 // MARK: - ChildDidStop -
 
-extension CoordinatorProtocol {
+public extension CoordinatorProtocol {
     func childDidStop(_ child: CoordinatorProtocol?) {
         for (index, coordinator) in children.enumerated() where coordinator === child {
             children.remove(at: index)

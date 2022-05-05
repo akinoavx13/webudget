@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import Core
 
 struct TagDetailsScene: View {
     
@@ -17,7 +18,24 @@ struct TagDetailsScene: View {
     // MARK: - Body
     
     var body: some View {
-        Text("Hello, World")
+        Form {
+            Section {
+                TextField(Translator.name, text: $viewModel.tagName)
+            } header: {
+                Text(Translator.name)
+            } footer: {
+                Text(Translator.xTransactions(value: viewModel.transactionsCount))
+            }
+
+            Section {
+                Button {
+                    viewModel.save()
+                } label: {
+                    Label(Translator.save, systemImage: "square.and.arrow.down.fill")
+                }
+            }
+        }
+        .onAppear { viewModel.fetchTag() }
     }
 }
 

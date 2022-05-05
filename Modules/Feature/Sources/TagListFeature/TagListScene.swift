@@ -20,7 +20,7 @@ struct TagListScene: View {
         List {
             ForEach(viewModel.models) { model in
                 Button {
-                    viewModel.presentTagDetail(uuid: model.id)
+                    viewModel.presentTagDetails(uuid: model.id)
                 } label: {
                     TagComponent(model: model)
                 }

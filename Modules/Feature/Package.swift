@@ -42,7 +42,9 @@ let package = Package(
             .product(name: "BudgetService", package: "Service")
         ]),
         .target(name: "TagDetailsFeature", dependencies: [
-            "Core"
+            "Core",
+            "Model",
+            .product(name: "BudgetService", package: "Service")
         ])
     ]
 )

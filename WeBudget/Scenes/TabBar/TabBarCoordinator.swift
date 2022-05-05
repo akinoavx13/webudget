@@ -36,7 +36,7 @@ final class TabBarCoordinator: CoordinatorProtocol {
     
     // MARK: - Methods
     
-    func start(params: Any...) {
+    func start(params: Any?...) {
         add(tab: .transaction)
         add(tab: .tagList)
         add(tab: .history)

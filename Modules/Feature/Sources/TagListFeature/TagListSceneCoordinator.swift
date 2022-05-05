@@ -41,7 +41,7 @@ public final class TagListSceneCoordinator: CoordinatorProtocol {
     // MARK: - Methods
     
     @MainActor
-    public func start(params: Any...) {
+    public func start(params: Any?...) {
         let viewModel = TagListSceneViewModel(budgetService: dependencies.budetService)
         viewModel.coordinator = self
         
@@ -57,9 +57,11 @@ public final class TagListSceneCoordinator: CoordinatorProtocol {
     
     @MainActor
     func presentTagDetails(uuid: UUID?) {
-        dependencies
+        let coordinator = dependencies
             .tagDetailsSceneDIContainer
             .makeCoordinator(navigationController: navigationController)
-            .start()
+        
+        children.append(coordinator)
+        coordinator.start(params: uuid)
     }
 }

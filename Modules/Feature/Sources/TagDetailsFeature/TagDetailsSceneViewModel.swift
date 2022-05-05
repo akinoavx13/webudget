@@ -7,6 +7,9 @@
 //
 
 import Combine
+import BudgetService
+import Model
+import Foundation.NSUUID
 
 @MainActor
 final class TagDetailsSceneViewModel: ObservableObject {
@@ -14,12 +17,42 @@ final class TagDetailsSceneViewModel: ObservableObject {
     // MARK: - Properties
     
     weak var coordinator: TagDetailsSceneCoordinator?
+ 
+    @Published var tagName: String = ""
+    @Published private(set) var transactionsCount: Int = 0
+
+    private var tag: Tag?
+    private let id: UUID
+    
+    private let budgetService: BudgetServiceProtocol
+    
+    // MARK: - Lifecycle
+    
+    init(budgetService: BudgetServiceProtocol,
+         id: UUID) {
+        self.budgetService = budgetService
+        self.id = id
+    }
+    
+    // MARK: - Methods
+    
+    func fetchTag() {
+        tag = budgetService.fetchTag(uuid: id)
+        
+        tagName = tag?.value ?? ""
+        transactionsCount = tag?.transactionsCount ?? 0
+    }
+    
+    func save() {
+        coordinator?.stop()
+    }
 }
 
 #if DEBUG
 
 extension TagDetailsSceneViewModel {
-    static let preview = TagDetailsSceneViewModel()
+    static let preview = TagDetailsSceneViewModel(budgetService: BudgetService.preview,
+                                                  id: UUID())
 }
 
 #endif
