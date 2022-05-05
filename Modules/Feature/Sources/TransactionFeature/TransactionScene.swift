@@ -49,6 +49,7 @@ struct TransactionScene: View {
                                       deleteDidTapAction: viewModel.deleteDidTapAction,
                                       validateDidTapAction: viewModel.validateDidTapAction)
                     .padding(.horizontal)
+                    .padding(.bottom, 8)
                 }
         }
         .onAppear { viewModel.fetchTags() }
