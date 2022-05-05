@@ -12,7 +12,7 @@ import Core
 import BudgetService
 
 public protocol TagDetailsSceneCoordinatorDelegate: AnyObject {
-    func tgagDetailsSceneCoordinatorDidStop(_ sender: TagDetailsSceneCoordinator)
+    func tagDetailsSceneCoordinatorDidStop(_ sender: TagDetailsSceneCoordinator)
 }
 
 protocol TagDetailsSceneCoordinatorDependencies: AnyObject {
@@ -20,7 +20,6 @@ protocol TagDetailsSceneCoordinatorDependencies: AnyObject {
     // MARK: - Properties
     
     var budgetService: BudgetServiceProtocol { get }
-    
 }
 
 public final class TagDetailsSceneCoordinator: CoordinatorProtocol {
@@ -59,7 +58,7 @@ public final class TagDetailsSceneCoordinator: CoordinatorProtocol {
     }
     
     public func stop() {
-        delegate?.tgagDetailsSceneCoordinatorDidStop(self)
+        delegate?.tagDetailsSceneCoordinatorDidStop(self)
         navigationController.dismiss(animated: true)
         parentCoordinator?.childDidStop(self)
     }

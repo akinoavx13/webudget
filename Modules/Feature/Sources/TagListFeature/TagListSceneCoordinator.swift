@@ -74,7 +74,7 @@ public final class TagListSceneCoordinator: CoordinatorProtocol {
 
 extension TagListSceneCoordinator: TagDetailsSceneCoordinatorDelegate {
     @MainActor
-    public func tgagDetailsSceneCoordinatorDidStop(_ sender: TagDetailsSceneCoordinator) {
+    public func tagDetailsSceneCoordinatorDidStop(_ sender: TagDetailsSceneCoordinator) {
         viewModel?.fetchTags()
     }
 }
