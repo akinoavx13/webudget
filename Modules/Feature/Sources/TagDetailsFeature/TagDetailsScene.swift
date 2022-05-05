@@ -33,6 +33,20 @@ struct TagDetailsScene: View {
                 } label: {
                     Label(Translator.save, systemImage: "square.and.arrow.down.fill")
                 }
+                Button {
+                    viewModel.delete()
+                } label: {
+                    Label(Translator.delete, systemImage: "trash")
+                        .foregroundColor(.red)
+                }
+            }
+            
+            Section {
+                Button {
+                    viewModel.cancel()
+                } label: {
+                    Text(Translator.cancel)
+                }
             }
         }
         .onAppear { viewModel.fetchTag() }

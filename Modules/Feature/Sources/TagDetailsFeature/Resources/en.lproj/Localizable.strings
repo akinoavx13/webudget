@@ -1,3 +1,5 @@
 "name" = "Name";
 "save" = "Save";
 "x_transactions" = "%i transaction(s)";
+"cancel" = "Cancel";
+"delete" = "Delete";

@@ -13,6 +13,8 @@ extension Translator {
     
     static let name = Translator.string(key: "name", bundle: .module)
     static let save = Translator.string(key: "save", bundle: .module)
+    static let cancel = Translator.string(key: "cancel", bundle: .module)
+    static let delete = Translator.string(key: "delete", bundle: .module)
     
     // MARK: - Methods
     

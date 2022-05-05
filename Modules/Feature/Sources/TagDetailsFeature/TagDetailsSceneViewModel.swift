@@ -52,6 +52,18 @@ final class TagDetailsSceneViewModel: ObservableObject {
         
         coordinator?.stop()
     }
+    
+    func delete() {
+        if let tag = tag {
+            budgetService.delete(tags: [tag])
+        }
+        
+        coordinator?.stop()
+    }
+    
+    func cancel() {
+        coordinator?.stop()
+    }
 }
 
 #if DEBUG
