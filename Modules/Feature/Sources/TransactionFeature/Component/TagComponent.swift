@@ -25,6 +25,8 @@ struct TagComponent: View {
     
     @Environment(\.colorScheme) private var colorScheme
     
+    private let impactGenerator = UIImpactFeedbackGenerator(style: .light)
+
     // MARK: - Body
     
     var body: some View {
@@ -53,6 +55,7 @@ struct TagComponent: View {
     private func makeButtonTagView(model: Model) -> some View {
         Button {
             tagDidTapAction(model.id)
+            impactGenerator.impactOccurred()
         } label: {
             Text(model.name)
                 .fontWeight(model.isSelected ? .bold : .regular)
