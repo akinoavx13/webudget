@@ -63,12 +63,12 @@ final class HistorySceneViewModel: ObservableObject {
             .map { iterator in
                 Section(title: iterator.key,
                         models: iterator.value.map { TransactionComponent.Model(id: $0.id,
-                                                                                value: formatterService.formatCurrency(value: $0.value),
+                                                                                amount: formatterService.formatCurrency(value: $0.amount),
                                                                                 date: formatterService.formatDate(value: $0.date,
                                                                                                                   dateStyle: .medium,
                                                                                                                   timeStyle: .none),
                                                                                 isExpense: $0.isExpense,
-                                                                                tagTitle: $0.tag?.value)})
+                                                                                tagName: $0.tag?.name)})
             }
     }
     

@@ -11,7 +11,7 @@ struct TagComponent: View {
     
     struct Model: Identifiable {
         let id: UUID
-        let title: String
+        let name: String
         let subtitle: String
     }
 
@@ -25,7 +25,7 @@ struct TagComponent: View {
         HStack {
             VStack(alignment: .leading,
                    spacing: 6) {
-                Text(model.title)
+                Text(model.name)
                 
                 Text(model.subtitle)
                     .font(.caption)
@@ -46,11 +46,11 @@ struct TagComponent_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             TagComponent(model: TagComponent.Model(id: UUID(),
-                                                   title: "Groceries 🛒",
+                                                   name: "Groceries 🛒",
                                                    subtitle: "10 transactions"))
             
             TagComponent(model: TagComponent.Model(id: UUID(),
-                                                   title: "Groceries 🛒",
+                                                   name: "Groceries 🛒",
                                                    subtitle: "10 transactions"))
             .preferredColorScheme(.dark)
         }

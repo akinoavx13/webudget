@@ -11,10 +11,10 @@ struct TransactionComponent: View {
     
     struct Model: Identifiable {
         let id: UUID
-        let value: String
+        let amount: String
         let date: String
         let isExpense: Bool
-        let tagTitle: String?
+        let tagName: String?
     }
     
     // MARK: - Properties
@@ -33,7 +33,7 @@ struct TransactionComponent: View {
                     .font(.headline)
                     .foregroundColor(model.isExpense ? .red : .green)
                 
-                Text(model.value)
+                Text(model.amount)
                     .font(.headline)
                 
                 Spacer()
@@ -42,8 +42,8 @@ struct TransactionComponent: View {
                     .foregroundColor(.secondary)
             }
             
-            if let tagTitle = model.tagTitle {
-                Text(tagTitle)
+            if let tagName = model.tagName {
+                Text(tagName)
                     .font(.caption)
                     .fontWeight(.semibold)
                     .padding(6)
@@ -64,16 +64,16 @@ struct TransactionComponent_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             TransactionComponent(model: TransactionComponent.Model(id: UUID(),
-                                                                   value: "$ 5",
+                                                                   amount: "$ 5",
                                                                    date: "May 1",
                                                                    isExpense: true,
-                                                                   tagTitle: "Groceries 🛒"))
+                                                                   tagName: "Groceries 🛒"))
             
             TransactionComponent(model: TransactionComponent.Model(id: UUID(),
-                                                                   value: "$ 5",
+                                                                   amount: "$ 5",
                                                                    date: "May 1",
                                                                    isExpense: true,
-                                                                   tagTitle: "Groceries 🛒"))
+                                                                   tagName: "Groceries 🛒"))
             .preferredColorScheme(.dark)
             
         }

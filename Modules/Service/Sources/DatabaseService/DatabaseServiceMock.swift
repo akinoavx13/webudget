@@ -17,24 +17,24 @@ public final class DatabaseServiceMock: DatabaseServiceProtocol {
     // MARK: - Methods
     
     public func save(transaction: Transaction) { }
-    public func fetchTransactions() -> [Transaction] { [Transaction(value: 1250,
+    public func fetchTransactions() -> [Transaction] { [Transaction(amount: 1250,
                                                                     isExpense: true,
                                                                     id: UUID(),
                                                                     date: Date()),
-                                                        Transaction(value: 250,
+                                                        Transaction(amount: 250,
                                                                     isExpense: true,
                                                                     id: UUID(),
                                                                     date: Date()),
-                                                        Transaction(value: 10,
+                                                        Transaction(amount: 10,
                                                                     isExpense: false,
                                                                     id: UUID(),
                                                                     date: Date())] }
     public func delete(transactions: [Transaction]) { }
     
     public func save(tag: Tag) { }
-    public func fetchTags() -> [Tag] { [Tag(value: "Groceries 🛒",
+    public func fetchTags() -> [Tag] { [Tag(name: "Groceries 🛒",
                                             id: UUID())] }
-    public func fetchTag(uuid: UUID) -> Tag? { Tag(value: "Groceries 🛒",
+    public func fetchTag(uuid: UUID) -> Tag? { Tag(name: "Groceries 🛒",
                                                    id: UUID()) }
     public func delete(tags: [Tag]) { }
 }

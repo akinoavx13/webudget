@@ -154,7 +154,7 @@ public final class DatabaseService: DatabaseServiceProtocol {
     private func create(tag: Tag) -> CDTag {
         let newTag = CDTag(context: context)
         newTag.id = tag.id
-        newTag.value = tag.value
+        newTag.name = tag.name
         
         return newTag
     }
@@ -163,7 +163,7 @@ public final class DatabaseService: DatabaseServiceProtocol {
     private func create(transaction: Transaction) -> CDTransaction {
         let newTransaction = CDTransaction(context: context)
         newTransaction.id = transaction.id
-        newTransaction.value = Int64(transaction.value)
+        newTransaction.amount = Int64(transaction.amount)
         newTransaction.date = transaction.date
         newTransaction.isExpense = transaction.isExpense
         

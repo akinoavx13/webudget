@@ -13,11 +13,11 @@ extension Tag {
     // MARK: - Lifecycle
     
     init?(tag: CDTag?) {
-        guard let value = tag?.value,
+        guard let name = tag?.name,
               let id = tag?.id
         else { return nil }
         
-        self.init(value: value,
+        self.init(name: name,
                   id: id,
                   transactionsCount: tag?.transactions?.count)
     }

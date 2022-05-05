@@ -72,7 +72,7 @@ final class TransactionSceneViewModel: ObservableObject {
     func validateDidTapAction() {
         let selectedTag = tags.first(where: { $0.id == selectedTagId })
         
-        budgetService.save(transaction: Transaction(value: transactionAmount,
+        budgetService.save(transaction: Transaction(amount: transactionAmount,
                                                     isExpense: sourceModel?.isExpenseSelected ?? true,
                                                     tag: selectedTag))
         transactionAmount = 0
@@ -107,7 +107,7 @@ final class TransactionSceneViewModel: ObservableObject {
         tagModels = tags
             .map { tag in
                 TagComponent.Model(id: tag.id,
-                                   title: tag.value,
+                                   name: tag.name,
                                    isSelected: selectedTagId == tag.id)
             }
     }

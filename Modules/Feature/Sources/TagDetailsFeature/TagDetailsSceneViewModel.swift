@@ -39,7 +39,7 @@ final class TagDetailsSceneViewModel: ObservableObject {
     func fetchTag() {
         tag = budgetService.fetchTag(uuid: id)
         
-        tagName = tag?.value ?? ""
+        tagName = tag?.name ?? ""
         transactionsCount = tag?.transactionsCount ?? 0
     }
     

@@ -45,8 +45,8 @@ public final class BudgetService: BudgetServiceProtocol {
         let tags = databaseService.fetchTags()
         
         if tags.isEmpty {
-            save(tag: Tag(value: Translator.groceries))
-            save(tag: Tag(value: Translator.transit))
+            save(tag: Tag(name: Translator.groceries))
+            save(tag: Tag(name: Translator.transit))
             
             return databaseService.fetchTags()
         }

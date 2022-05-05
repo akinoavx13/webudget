@@ -13,7 +13,7 @@ struct TagComponent: View {
     
     struct Model: Identifiable, Equatable {
         let id: UUID
-        let title: String
+        let name: String
         let isSelected: Bool
     }
     
@@ -54,7 +54,7 @@ struct TagComponent: View {
         Button {
             tagDidTapAction(model.id)
         } label: {
-            Text(model.title)
+            Text(model.name)
                 .fontWeight(model.isSelected ? .bold : .regular)
         }
         .buttonStyle(AnimatedButtonStyle(backgroundColors: [colorScheme == .dark ? .black : .white],
@@ -73,12 +73,12 @@ struct TagComponent_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             TagComponent(models: [TagComponent.Model(id: UUID(),
-                                                     title: "Groceries 🛒",
+                                                     name: "Groceries 🛒",
                                                      isSelected: true)],
                          tagDidTapAction: { _ in })
             
             TagComponent(models: [TagComponent.Model(id: UUID(),
-                                                     title: "Groceries 🛒",
+                                                     name: "Groceries 🛒",
                                                      isSelected: false)],
                          tagDidTapAction: { _ in })
             .preferredColorScheme(.dark)

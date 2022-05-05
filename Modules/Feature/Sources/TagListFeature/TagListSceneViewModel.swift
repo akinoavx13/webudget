@@ -37,7 +37,7 @@ final class TagListSceneViewModel: ObservableObject {
         tags = budgetService .fetchTags()
         models = tags
             .map { TagComponent.Model(id: $0.id,
-                                      title: $0.value,
+                                      name: $0.name,
                                       subtitle: Translator.xTransactions(value: $0.transactionsCount)) }
     }
     

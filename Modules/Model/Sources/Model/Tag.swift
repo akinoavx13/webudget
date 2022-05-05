@@ -12,16 +12,16 @@ public struct Tag {
     // MARK: - Properties
     
     public let id: UUID
-    public let value: String
+    public let name: String
     public let transactionsCount: Int
 
     // MARK: - Lifecycle
     
-    public init(value: String,
+    public init(name: String,
                 id: UUID = UUID(),
                 transactionsCount: Int? = nil) {
         self.id = id
-        self.value = value
+        self.name = name
         self.transactionsCount = transactionsCount ?? 0
     }
 }

@@ -17,7 +17,7 @@ extension Transaction {
                 let date = transaction.date
         else { return nil }
         
-        self.init(value: Int(transaction.value),
+        self.init(amount: Int(transaction.amount),
                   isExpense: transaction.isExpense,
                   id: id,
                   date: date,
