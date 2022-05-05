@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		52424C6728242C3300E4C75B /* BudgetFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 52424C6628242C3300E4C75B /* BudgetFeature */; };
 		527B193928203A1E0017CB62 /* TagListFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 527B193828203A1E0017CB62 /* TagListFeature */; };
 		52AD9CBB281EAF9100E2620E /* BudgetService in Frameworks */ = {isa = PBXBuildFile; productRef = 52AD9CBA281EAF9100E2620E /* BudgetService */; };
 		52B278E2281D79230059CF1A /* FormatterService in Frameworks */ = {isa = PBXBuildFile; productRef = 52B278E1281D79230059CF1A /* FormatterService */; };
@@ -50,6 +51,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				52B278E2281D79230059CF1A /* FormatterService in Frameworks */,
+				52424C6728242C3300E4C75B /* BudgetFeature in Frameworks */,
 				527B193928203A1E0017CB62 /* TagListFeature in Frameworks */,
 				52AD9CBB281EAF9100E2620E /* BudgetService in Frameworks */,
 				52B953AD281ECA74005A8B38 /* HistoryFeature in Frameworks */,
@@ -174,6 +176,7 @@
 				52B953AC281ECA74005A8B38 /* HistoryFeature */,
 				527B193828203A1E0017CB62 /* TagListFeature */,
 				52C9F9582821791500F9B237 /* TagDetailsFeature */,
+				52424C6628242C3300E4C75B /* BudgetFeature */,
 			);
 			productName = WeBudget;
 			productReference = 52B5BE3A281D66A800BA6643 /* WeBudget.app */;
@@ -479,6 +482,10 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		52424C6628242C3300E4C75B /* BudgetFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = BudgetFeature;
+		};
 		527B193828203A1E0017CB62 /* TagListFeature */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = TagListFeature;

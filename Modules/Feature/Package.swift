@@ -13,7 +13,8 @@ let package = Package(
         .library(name: "TransactionFeature", targets: ["TransactionFeature"]),
         .library(name: "HistoryFeature", targets: ["HistoryFeature"]),
         .library(name: "TagListFeature", targets: ["TagListFeature"]),
-        .library(name: "TagDetailsFeature", targets: ["TagDetailsFeature"])
+        .library(name: "TagDetailsFeature", targets: ["TagDetailsFeature"]),
+        .library(name: "BudgetFeature", targets: ["BudgetFeature"])
     ],
     dependencies: [
         .package(name: "Core", path: "./Core"),
@@ -45,6 +46,9 @@ let package = Package(
             "Core",
             "Model",
             .product(name: "BudgetService", package: "Service")
+        ]),
+        .target(name: "BudgetFeature", dependencies: [
+            "Core"
         ])
     ]
 )

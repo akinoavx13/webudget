@@ -11,6 +11,7 @@ import BudgetService
 import HistoryFeature
 import TagListFeature
 import TagDetailsFeature
+import BudgetFeature
 
 final class AppDIContainer {
     
@@ -46,5 +47,11 @@ final class AppDIContainer {
         let dependencies = TagDetailsSceneDIContainer.Dependencies(budgetService: budgetService)
 
         return TagDetailsSceneDIContainer(dependencies: dependencies)
+    }()
+    
+    private(set) lazy var budgetSceneDIContainer: BudgetSceneDIContainer = {
+        let dependencies = BudgetSceneDIContainer.Dependencies()
+
+        return BudgetSceneDIContainer(dependencies: dependencies)
     }()
 }
