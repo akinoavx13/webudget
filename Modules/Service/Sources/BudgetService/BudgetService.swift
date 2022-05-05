@@ -18,7 +18,7 @@ public protocol BudgetServiceProtocol {
     func save(tag: Tag)
     func fetchTags() -> [Tag]
     func fetchTag(uuid: UUID) -> Tag?
-    func updateTag(tag: Tag)
+    func createOrUpdateTag(tag: Tag)
     func delete(tags: [Tag])
 }
 
@@ -57,7 +57,7 @@ public final class BudgetService: BudgetServiceProtocol {
     
     public func fetchTag(uuid: UUID) -> Tag? { databaseService.fetchTag(uuid: uuid) }
     
-    public func updateTag(tag: Tag) { databaseService.updateTag(tag: tag) }
+    public func createOrUpdateTag(tag: Tag) { databaseService.createOrUpdateTag(tag: tag) }
     
     public func delete(tags: [Tag]) { databaseService.delete(tags: tags) }
 }

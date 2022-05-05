@@ -17,7 +17,7 @@ public struct Tag {
 
     // MARK: - Lifecycle
     
-    public init(name: String,
+    public init(name: String = "",
                 id: UUID = UUID(),
                 transactionsCount: Int? = nil) {
         self.id = id

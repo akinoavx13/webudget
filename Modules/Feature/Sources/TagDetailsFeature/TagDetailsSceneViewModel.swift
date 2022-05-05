@@ -30,14 +30,14 @@ final class TagDetailsSceneViewModel: ObservableObject {
     @Published private(set) var transactionsCount: Int = 0
 
     private var tag: Tag?
-    private let id: UUID
+    private let id: UUID?
     
     private let budgetService: BudgetServiceProtocol
     
     // MARK: - Lifecycle
     
     init(budgetService: BudgetServiceProtocol,
-         id: UUID) {
+         id: UUID?) {
         self.budgetService = budgetService
         self.id = id
     }
@@ -45,7 +45,11 @@ final class TagDetailsSceneViewModel: ObservableObject {
     // MARK: - Methods
     
     func fetchTag() {
-        tag = budgetService.fetchTag(uuid: id)
+        if let id = id {
+            tag = budgetService.fetchTag(uuid: id)
+        } else {
+            tag = Tag()
+        }
         
         tagName = tag?.name ?? ""
         transactionsCount = tag?.transactionsCount ?? 0
@@ -55,7 +59,7 @@ final class TagDetailsSceneViewModel: ObservableObject {
         if var tag = tag {
             tag.name = tagName
             
-            budgetService.updateTag(tag: tag)
+            budgetService.createOrUpdateTag(tag: tag)
             delegate?.tagDetailsSceneViewModel(self, tagDidSave: tag)
         }
         

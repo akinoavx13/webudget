@@ -47,7 +47,7 @@ public final class TagDetailsSceneCoordinator: CoordinatorProtocol {
     
     @MainActor
     public func start(params: Any?...) {
-        guard let id = params.first as? UUID else { fatalError("Could not find tag id") }
+        let id = params.first as? UUID
         
         let viewModel = TagDetailsSceneViewModel(budgetService: dependencies.budgetService,
                                                  id: id)

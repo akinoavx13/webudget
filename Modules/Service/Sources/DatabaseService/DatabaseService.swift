@@ -16,7 +16,7 @@ public protocol DatabaseServiceProtocol {
     func save(tag: Tag)
     func fetchTags() -> [Tag]
     func fetchTag(uuid: UUID) -> Tag?
-    func updateTag(tag: Tag)
+    func createOrUpdateTag(tag: Tag)
     func delete(tags: [Tag])
 }
 
@@ -111,12 +111,18 @@ public final class DatabaseService: DatabaseServiceProtocol {
         }
     }
     
-    public func updateTag(tag: Tag) {
+    public func createOrUpdateTag(tag: Tag) {
         let fetchRequest: NSFetchRequest<CDTag> = NSFetchRequest(entityName: "\(CDTag.self)")
         fetchRequest.predicate = NSPredicate(format: "id == %@", tag.id.uuidString)
 
         do {
-            guard let cdTag = try context.fetch(fetchRequest).first else { return }
+            let cdTag: CDTag
+            
+            if let fetchedTag = try context.fetch(fetchRequest).first {
+                cdTag = fetchedTag
+            } else {
+                cdTag = CDTag(context: context)
+            }
             
             updateValues(of: cdTag,
                          with: tag)
